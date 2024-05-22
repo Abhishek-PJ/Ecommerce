@@ -5,7 +5,6 @@ import { Timestamp, doc, getDoc, setDoc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
-import { Link } from "react-router-dom";
 
 
 const categoryList = [
@@ -213,9 +212,6 @@ const UpdateProductPage = () => {
                             Update Product
                         </button>
 
-                        <li>
-                <Link  className=" m-2 text-pink-500 text-center py-3 font-semibold" to={'/admin-dashboard'}>All Product</Link>
-                   </li>
                     </div>
                 </div>s
             </div>

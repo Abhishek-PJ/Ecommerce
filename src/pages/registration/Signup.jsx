@@ -10,7 +10,7 @@ import Loader from "../../components/loader/Loader";
 
 const Signup = () => {
     const context = useContext(myContext);
-    const {loading, setLoading } = context;
+    const { loading, setLoading } = context;
 
     // navigate 
     const navigate = useNavigate();
@@ -20,8 +20,15 @@ const Signup = () => {
         name: "",
         email: "",
         password: "",
-        role: "admin"
+        role: ""
     });
+
+    const handleRoleChange = (event) => {
+        setUserSignup({
+            ...userSignup,
+            role: event.target.value
+        });
+    };
 
     /**========================================================================
      *                          User Signup Function 
@@ -29,8 +36,9 @@ const Signup = () => {
 
     const userSignupFunction = async () => {
         // validation 
-        if (userSignup.name === "" || userSignup.email === "" || userSignup.password === "") {
-            toast.error("All Fields are required")
+        if (userSignup.name === "" || userSignup.email === "" || userSignup.password === "" || userSignup.role === "") {
+            toast.error("All Fields are required");
+            return;
         }
 
         setLoading(true);
@@ -55,41 +63,76 @@ const Signup = () => {
             }
 
             // create user Refrence
-            const userRefrence = collection(fireDB, "user")
+            const userRefrence = collection(fireDB, "user");
 
             // Add User Detail
-            addDoc(userRefrence, user);
+            await addDoc(userRefrence, user);
 
             setUserSignup({
                 name: "",
                 email: "",
-                password: ""
-            })
+                password: "",
+                role: ""
+            });
 
             toast.success("Signup Successfully");
 
             setLoading(false);
-            navigate('/login')
+            navigate('/login');
         } catch (error) {
             console.log(error);
             setLoading(false);
         }
-
     }
+
     return (
         <div className='flex justify-center items-center h-screen'>
-            {loading && <Loader/>}
-            {/* Login Form  */}
-            <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
-
-                {/* Top Heading  */}
+            {loading && <Loader />}
+            {/* Signup Form */}
+            <div className="signup_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
+                {/* Top Heading */}
                 <div className="mb-5">
                     <h2 className='text-center text-2xl font-bold text-pink-500 '>
                         Signup
                     </h2>
                 </div>
 
-                {/* Input One  */}
+                {/* User Role Selection */}
+                <div className="mb-5">
+                    <label className="mb-2 text-lg text-red-500 font-semibold">Select Role:</label>
+                    <div className="flex space-x-4">
+                        <div className="flex items-center">
+                            <input
+                                type="radio"
+                                id="admin"
+                                name="userRole"
+                                value="Admin"
+                                checked={userSignup.role === 'Admin'}
+                                onChange={handleRoleChange}
+                                className="mr-2"
+                            />
+                            <label htmlFor="admin" className="text-sm font-medium text-gray-700">
+                                Admin
+                            </label>
+                        </div>
+                        <div className="flex items-center">
+                            <input
+                                type="radio"
+                                id="user"
+                                name="userRole"
+                                value="User"
+                                checked={userSignup.role === 'User'}
+                                onChange={handleRoleChange}
+                                className="mr-2"
+                            />
+                            <label htmlFor="user" className="text-sm font-medium text-gray-700">
+                                User
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Input Fields */}
                 <div className="mb-3">
                     <input
                         type="text"
@@ -99,13 +142,12 @@ const Signup = () => {
                             setUserSignup({
                                 ...userSignup,
                                 name: e.target.value
-                            })
+                            });
                         }}
                         className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
                     />
                 </div>
 
-                {/* Input Two  */}
                 <div className="mb-3">
                     <input
                         type="email"
@@ -115,13 +157,12 @@ const Signup = () => {
                             setUserSignup({
                                 ...userSignup,
                                 email: e.target.value
-                            })
+                            });
                         }}
                         className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
                     />
                 </div>
 
-                {/* Input Three  */}
                 <div className="mb-5">
                     <input
                         type="password"
@@ -131,13 +172,13 @@ const Signup = () => {
                             setUserSignup({
                                 ...userSignup,
                                 password: e.target.value
-                            })
+                            });
                         }}
                         className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
                     />
                 </div>
 
-                {/* Signup Button  */}
+                {/* Signup Button */}
                 <div className="mb-5">
                     <button
                         type='button'
@@ -149,9 +190,8 @@ const Signup = () => {
                 </div>
 
                 <div>
-                    <h2 className='text-black'>Have an account <Link className=' text-pink-500 font-bold' to={'/login'}>Login</Link></h2>
+                    <h2 className='text-black'>Have an account? <Link className=' text-pink-500 font-bold' to={'/login'}>Login</Link></h2>
                 </div>
-
             </div>
         </div>
     );

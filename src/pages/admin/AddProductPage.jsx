@@ -8,28 +8,28 @@ import Loader from "../../components/loader/Loader";
 
 const categoryList = [
     {
-        name: 'fashion'
+        name: 'Mens'
     },
     {
-        name: 'shirt'
+        name: 'Womens'
     },
     {
-        name: 'jacket'
+        name: 'Beauty Products'
     },
     {
-        name: 'mobile'
+        name: 'Mobiles'
     },
     {
-        name: 'laptop'
+        name: 'TV'
     },
     {
-        name: 'shoes'
+        name: 'Grocery'
     },
     {
-        name: 'home'
+        name: 'Kitchen'
     },
     {
-        name: 'books'
+        name: 'Books'
     }
 ]
 

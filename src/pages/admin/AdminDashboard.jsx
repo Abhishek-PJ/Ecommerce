@@ -5,18 +5,54 @@ import OrderDetail from '../../components/admin/OrderDetail';
 import UserDetail from '../../components/admin/UserDetail';
 import { useContext } from 'react';
 import myContext from '../../context/myContext';
+import {useNavigate} from "react-router-dom"; 
+import toast from 'react-hot-toast';
+
+
 
 const AdminDashboard = () => {
+
     const user = JSON.parse(localStorage.getItem('users'));
     const context = useContext(myContext);
     const {getAllProduct, getAllOrder, getAllUser} = context;
+
+    let parsedUser = null;
+
+    if (user) {
+        try {
+            parsedUser = JSON.parse(user);
+        } catch (error) {
+            console.error('Error parsing user data:', error);
+        }
+    }
+
+    // Navigate
+    const navigate = useNavigate();
+
+    // Logout function
+    const logout = () => {
+        localStorage.removeItem('users');
+        navigate("/login");
+        toast.success("Loged out");
+    }
+    
     return (
         <div>
             {/* Top */}
             <div className="top mb-5 px-5 mt-5">
-                <div className=" bg-pink-50 py-5 border border-pink-100 rounded-lg">
-                    <h1 className=" text-center text-2xl font-bold text-pink-500">Admin Dashboard</h1>
+                <div className=" bg-pink-50 py-5 border border-pink-100 rounded-lg flex justify-center items-center">
+                <h1 className=" text-center text-2xl font-bold text-pink-500">Admin Dashboard</h1>
+                <button 
+            onClick={logout}
+            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded m-2 "
+        >
+            Logout
+        </button>
+                   
+                   
+
                 </div>
+                
             </div>
 
             <div className="px-5">

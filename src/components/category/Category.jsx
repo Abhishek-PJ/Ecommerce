@@ -4,11 +4,11 @@ import { useNavigate } from "react-router";
 const category = [
     {
         image: 'https://cdn-icons-png.flaticon.com/512/14355/14355971.png',
-        name: 'Mens Fashion'
+        name: 'Mens'
     },
     {
         image: "https://cdn-icons-png.flaticon.com/512/3065/3065581.png",
-        name: 'Womens Fashion'
+        name: 'Womens'
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/512/2737/2737437.png',

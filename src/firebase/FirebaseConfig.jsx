@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
-// Your web app's Firebase configuration
 // const firebaseConfig = {
 //     apiKey: "AIzaSyDBHTUtOeuCON7AEF3UPPxU1sHsnFfBv-M",
 //     authDomain: "ecommerce-for.firebaseapp.com",
@@ -14,20 +13,20 @@ import { getAuth } from 'firebase/auth';
 // };
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDnDb5_MDQ3rW5B1txaH1q4BX734JDcdME",
-    authDomain: "caramel-limiter-404807.firebaseapp.com",
-    projectId: "caramel-limiter-404807",
-    storageBucket: "caramel-limiter-404807.appspot.com",
-    messagingSenderId: "475245365846",
-    appId: "1:475245365846:web:1e1d2bbe61652b177ac9f7",
-    measurementId: "G-KXPE9C8KF6"
-  };
+  apiKey: "AIzaSyD4E72VkIynXf-uqLUqPc4yywGCH1IRGuQ",
+  authDomain: "e-commerce-4e67e.firebaseapp.com",
+  projectId: "e-commerce-4e67e",
+  storageBucket: "e-commerce-4e67e.appspot.com",
+  messagingSenderId: "515303367724",
+  appId: "1:515303367724:web:eacba6a647ea4467999d89",
+  measurementId: "G-E32MFZZCND"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 const fireDB = getFirestore(app);
 const auth = getAuth(app);
+const db = getFirestore();
 
-
-export { fireDB, auth }
+export { fireDB, auth , db }
