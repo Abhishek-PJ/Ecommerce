@@ -55,13 +55,13 @@ const AllProduct = () => {
                                     <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md cursor-pointer">
                                         <img
                                             onClick={() => navigate(`/productinfo/${id}`)}
-                                            className="lg:h-80  h-96 w-full"
+                                            className="lg:h-80  h-52 w-full"
                                             src={productImageUrl}
                                             alt="blog"
                                         />
                                         <div className="p-6">
                                             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                                E-bharat
+                                                E-Commerce
                                             </h2>
                                             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                                                 {title.substring(0, 25)}
@@ -71,7 +71,7 @@ const AllProduct = () => {
                                             </h1>
 
                                             <div
-                                                className="flex justify-center ">
+                                                className="flex  justify-center align-bottom ">
                                                 {cartItems.some((p)=> p.id === item.id) 
                                                 
                                                 ?
@@ -90,9 +90,9 @@ const AllProduct = () => {
                                                 </button>
                                             }
                                             </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             )
                         })}
                     </div>
