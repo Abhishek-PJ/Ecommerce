@@ -77,11 +77,11 @@ const Login = () => {
     };
 
     return (
-        <div className='flex justify-center items-center min-h-screen bg-pink-50'>
+        <div className='flex justify-center items-center min-h-screen bg-pink-100'>
             {loading && <Loader />}
             <div className="login_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-md w-full max-w-md  m-2" >
                 <div className="mb-5">
-                    <h2 className='text-center text-2xl font-bold text-pink-500'>
+                    <h2 className='text-center text-2xl font-bold text-pink-600'>
                         Login
                     </h2>
                 </div>

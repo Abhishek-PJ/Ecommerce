@@ -36,7 +36,7 @@ const Footer = () => {
           </div>
           {/* Social */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Social</h3>
+            <h3 className="text-lg font-bold text-white mb-4">Social Networks</h3>
             <ul className="text-white flex space-x-4">
               <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-black">Facebook<i className="fab fa-facebook-f"></i></a></li>
               <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-black">Twitter<i className="fab fa-twitter"></i></a></li>
