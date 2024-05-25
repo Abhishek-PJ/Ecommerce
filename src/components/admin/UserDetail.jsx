@@ -9,7 +9,7 @@ const UserDetail = () => {
             <div>
                 <div className="py-5 flex justify-between items-center">
                     {/* text  */}
-                    <h1 className=" text-xl text-pink-300 font-bold">All User</h1>
+                    <h1 className=" text-xl text-pink-600 font-bold">All User</h1>
                 </div>
 
                 {/* table  */}

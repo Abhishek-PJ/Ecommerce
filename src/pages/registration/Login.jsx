@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
@@ -6,134 +5,138 @@ import toast from "react-hot-toast";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import Loader from "../../components/loader/Loader";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const Login = () => {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
 
-    // navigate 
     const navigate = useNavigate();
 
-    // User Signup State 
     const [userLogin, setUserLogin] = useState({
         email: "",
         password: ""
     });
 
-    /**========================================================================
-     *                          User Login Function 
-    *========================================================================**/
-
-    const userLoginFunction = async () => {
-        // validation 
+    const userLoginFunction = async (e) => {
+        e.preventDefault(); // Prevent default form submission
         if (userLogin.email === "" || userLogin.password === "") {
-            toast.error("All Fields are required")
+            toast.error("All Fields are required");
+            return;
         }
 
         setLoading(true);
         try {
             const users = await signInWithEmailAndPassword(auth, userLogin.email, userLogin.password);
-            // console.log(users.user)
+            console.log('Login Successful:', users);
 
             try {
                 const q = query(
                     collection(fireDB, "user"),
-                    where('uid', '==', users?.user?.uid)
+                    where('uid', '==', users.user.uid)
                 );
-                const data = onSnapshot(q, (QuerySnapshot) => {
-                    let user;
-                    QuerySnapshot.forEach((doc) => user = doc.data());
-                    localStorage.setItem("users", JSON.stringify(user) )
-                    setUserLogin({
-                        email: "",
-                        password: ""
-                    })
-                    toast.success("Login Successfully");
-                    setLoading(false);
-                    if(user.role === "user") {
-                        navigate('/user-dashboard');
-                    }else{
-                        navigate('/admin-dashboard');
-                    }
+                const querySnapshot = await getDocs(q);
+                let user;
+                querySnapshot.forEach((doc) => {
+                    user = doc.data();
                 });
-                return () => data;
-            } catch (error) {
-                console.log(error);
+
+                if (!user) {
+                    toast.error("User not found");
+                    setLoading(false);
+                    return;
+                }
+
+                console.log('User Data:', user);
+
+                localStorage.setItem("users", JSON.stringify(user));
+                setUserLogin({
+                    email: "",
+                    password: ""
+                });
+                toast.success("Login Successfully");
                 setLoading(false);
+
+                if (user.role.toLowerCase() === "user") {
+                    console.log('Navigating to /user-dashboard');
+                    navigate('/user-dashboard');
+                } else {
+                    console.log('Navigating to /admin-dashboard');
+                    navigate('/admin-dashboard');
+                }
+            } catch (error) {
+                console.log('Error fetching user data:', error);
+                setLoading(false);
+                toast.error("Failed to fetch user data");
             }
         } catch (error) {
-            console.log(error);
+            console.log('Login Failed:', error);
             setLoading(false);
             toast.error("Login Failed");
         }
+    };
 
-    }
     return (
-        <div className='flex justify-center items-center h-screen'>
+        <div className='flex justify-center items-center min-h-screen bg-pink-50'>
             {loading && <Loader />}
-            {/* Login Form  */}
-            <div className="login_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md">
-
-                {/* Top Heading  */}
+            <div className="login_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-md w-full max-w-md  m-2" >
                 <div className="mb-5">
-                    <h2 className='text-center text-2xl font-bold text-pink-500 '>
+                    <h2 className='text-center text-2xl font-bold text-pink-500'>
                         Login
                     </h2>
                 </div>
 
-                {/* Input One  */}
-                <div className="mb-3">
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder='Email Address'
-                        value={userLogin.email}
-                        onChange={(e) => {
-                            setUserLogin({
-                                ...userLogin,
-                                email: e.target.value
-                            })
-                        }}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
-                    />
-                </div>
+                <form onSubmit={userLoginFunction}>
+                    <div className="mb-3">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder='Email Address'
+                            value={userLogin.email}
+                            onChange={(e) => {
+                                setUserLogin({
+                                    ...userLogin,
+                                    email: e.target.value
+                                });
+                            }}
+                            className='bg-pink-50 border border-pink-200 px-4 py-2 w-full rounded-md outline-none placeholder-pink-200'
+                            autoComplete="email"
+                        />
+                    </div>
 
-                {/* Input Two  */}
-                <div className="mb-5">
-                    <input
-                        type="password"
-                        placeholder='Password'
-                        value={userLogin.password}
-                        onChange={(e) => {
-                            setUserLogin({
-                                ...userLogin,
-                                password: e.target.value
-                            })
-                        }}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-96 rounded-md outline-none placeholder-pink-200'
-                    />
-                </div>
+                    <div className="mb-5">
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder='Password'
+                            value={userLogin.password}
+                            onChange={(e) => {
+                                setUserLogin({
+                                    ...userLogin,
+                                    password: e.target.value
+                                });
+                            }}
+                            className='bg-pink-50 border border-pink-200 px-4 py-2 w-full rounded-md outline-none placeholder-pink-200'
+                            autoComplete="current-password"
+                        />
+                    </div>
 
-                {/* Signup Button  */}
-                <div className="mb-5">
-                    <button
-                        type='button'
-                        onClick={userLoginFunction}
-                        className='bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md '
-                    >
-                        Login
-                    </button>
-                </div>
+                    <div className="mb-5">
+                        <button
+                            type='submit'
+                            className='bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md'
+                        >
+                            Login
+                        </button>
+                    </div>
+                </form>
 
                 <div>
                     <h2 className='text-black'>Don't Have an account <Link className=' text-pink-500 font-bold' to={'/signup'}>Signup</Link></h2>
                 </div>
-
             </div>
         </div>
     );
-}
+};
 
 export default Login;
-
