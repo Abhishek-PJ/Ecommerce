@@ -1,58 +1,60 @@
-import { useContext, useState } from "react";
-import myContext from "../../context/myContext";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router";
-
+import myContext from "../../context/myContext";
 
 const SearchBar = () => {
     const context = useContext(myContext);
     const { getAllProduct } = context
+    const navigate = useNavigate();
+
     // Search State 
     const [search, setSearch] = useState("");
 
-    // Filter Search Data
-    const filterSearchData = getAllProduct.filter((obj) => obj.title.toLowerCase().includes(search)).slice(0, 8)
+    // Filtered Search Data
+    const filteredProducts = getAllProduct.filter(product =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+    );
 
-    const navigate = useNavigate();
+    const handleProductClick = (productId) => {
+
+        navigate(`/productinfo/${productId}`);
+        //reloads windows
+        window.location.reload();
+
+    };
 
     return (
-        <div className=" ">
-            {/* search input  */}
-            <div className="input flex  justify-center">
-                <input
-                    type="text"
-                    placeholder='Search here'
-                    onChange={(e) => setSearch(e.target.value)}
-                    className=' bg-gray-200 placeholder-gray-400 rounded-lg px-2 py-2 w-96 lg:w-96 md:w-96 outline-none text-black  '
-                />
-            </div>
+        <div className="relative">
+            {/* Search input */}
+            <input
+                type="text"
+                placeholder='Search here'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className='bg-gray-200 placeholder-gray-400 rounded-lg px-3 py-2 w-full outline-none text-black focus:ring-2 focus:ring-blue-500'
+            />
 
-            {/* search drop-down  */}
-            <div className=" flex justify-center">
-                {search && <div className="block absolute bg-gray-200 w-96 md:w-96 lg:w-96 z-50 my-1 rounded-lg px-2 py-2">
-                    {filterSearchData.length > 0 ?
-                        <>
-                            {filterSearchData.map((item, index) => {
-                                return (
-                                    <div key={index} className="py-2 px-2 cursor-pointer" onClick={() => navigate(`/productinfo/${item.id}`)}>
-                                        <div className="flex items-center gap-2">
-                                            <img className="w-10" src={item.productImageUrl} alt="" />
-                                            {item.title}
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </>
-                        :
-                        <>
-                            <div className="flex justify-center">
-                                <img className=" w-20" src="https://cdn-icons-png.flaticon.com/128/10437/10437090.png" alt="img" />
+            {/* Search drop-down */}
+            {search && (
+                <div className="absolute top-full left-0 right-0 bg-gray-200 shadow-md rounded-lg mt-1">
+                    {filteredProducts.length > 0 ? (
+                        filteredProducts.slice(0, 4).map((product, index) => (
+                            <div key={index} className="px-4 py-3 cursor-pointer hover:bg-gray-300" onClick={() => handleProductClick(product.id)}>
+                                <div className="flex items-center space-x-2">
+                                    <img className="w-10" src={product.productImageUrl} alt="" />
+                                    <span>{product.title}</span>
+                                </div>
                             </div>
-                        </>}
+                        ))
+                    ) : (
+                        <div className="flex justify-center py-3">
+                            <img className="w-12" src="https://cdn-icons-png.flaticon.com/128/10437/10437090.png" alt="img" />
+                        </div>
+                    )}
                 </div>
-                }
-            </div>
+            )}
         </div>
     );
-}
+};
 
 export default SearchBar;
