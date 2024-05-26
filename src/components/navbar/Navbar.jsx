@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import SearchBar from "../searchBar/SearchBar";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   // Get user from localStorage
@@ -22,7 +23,8 @@ const Navbar = () => {
   // Logout function
   const logout = () => {
     localStorage.removeItem('users');
-    navigate("/login");
+    navigate("/");
+    toast.success("Logout Success");
   };
 
   // CartItems
