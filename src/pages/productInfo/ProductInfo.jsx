@@ -144,21 +144,21 @@ const ProductInfo = () => {
                             </div>
                             <div className="w-full md:w-1/2 px-4">
                                 <div className="lg:pl-10">
-                                    <h2 className="text-3xl font-semibold mb-4 text-gray-700 dark:text-gray-300">
+                                    <h2 className="text-3xl font-semibold mb-4 text-black dark:text-bl-300">
                                         {product?.title}
                                     </h2>
                                     <div className="flex items-center mb-4">
                                         <p className="mr-2 text-yellow-500">
                                             ★ ★ ★ ★ ★
                                         </p>
-                                        <span className="text-gray-600">
+                                        <span className="text-black">
                                             (5 Reviews)
                                         </span>
                                     </div>
-                                    <p className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-300">
+                                    <p className="text-xl font-semibold mb-4 text-black dark:text-gray-800">
                                         ₹ {product?.price}
                                     </p>
-                                    <p className="mb-6 text-gray-700 dark:text-gray-300">
+                                    <p className="mb-6 text-black dark:text-gray-800">
                                         {product?.description}
                                     </p>
                                     <div className="flex mb-4">
