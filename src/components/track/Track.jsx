@@ -15,7 +15,7 @@ const Track = () => {
                             {/* Track Title */}
                             <h2 className="title-font font-medium text-lg text-gray-900">Premium T-Shirts</h2>
                             {/* Track Description */}
-                            <p className="leading-relaxed">Experience the epitome of comfort and style with our premium T-shirts. Made from 100% organic cotton, these T-shirts are not only soft but also durable, ensuring you look great while staying eco-friendly. Our extensive range of colors and sizes ensures there's something for everyone.</p>
+                            <p className="leading-relaxed">Experience the feeling of comfort and style with our premium dresses. Made from 100% organic cotton, these dresses are not only soft but also durable, ensuring you look great while staying eco-friendly. </p>
                         </div>
                     </div>
 
@@ -30,7 +30,7 @@ const Track = () => {
                             {/* Track Title */}
                             <h2 className="title-font font-medium text-lg text-gray-900">Custom Hoodies</h2>
                             {/* Track Description */}
-                            <p className="leading-relaxed">Our custom hoodies are designed to keep you warm and stylish no matter the season. Made from a premium blend of fabrics, they offer the perfect combination of softness and durability. With our easy-to-use customization tool, you can add your personal touch, making each hoodie uniquely yours.</p>
+                            <p className="leading-relaxed">Our custom hoodies are designed to keep you warm and stylish no matter the season. Made from a premium blend of fabrics, they offer the perfect combination of softness and durability.</p>
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@ const Track = () => {
                             {/* Track Title */}
                             <h2 className="title-font font-medium text-lg text-gray-900">Trendy Sneakers</h2>
                             {/* Track Description */}
-                            <p className="leading-relaxed">Elevate your footwear collection with our trendy sneakers. These sneakers are not only stylish but also engineered for maximum comfort, ensuring you can walk or run with ease. Our designs cater to all fashion tastes, from classic to contemporary, making sure you stand out in any crowd.</p>
+                            <p className="leading-relaxed">Elevate your footwear collection with our trendy sneakers. These sneakers are not only stylish but also engineered for maximum comfort, ensuring you can walk or run with ease.</p>
                         </div>
                     </div>
 
