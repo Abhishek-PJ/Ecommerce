@@ -60,6 +60,10 @@ const AddProductPage = () => {
         }
     };
 
+    const cancelUpdate = () => {
+        navigate('/admin-dashboard');
+    };
+
     return (
         <div className="min-h-screen flex justify-center items-center bg-pink-100 px-4">
             {loading && <Loader />}
@@ -115,6 +119,14 @@ const AddProductPage = () => {
                         rows="5"
                         className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
+                    <div className="flex space-x-4">
+                    <button
+                            onClick={cancelUpdate}
+                            type="button"
+                            className="w-full bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-md text-lg font-bold transition-colors"
+                        >
+                            Cancel
+                        </button>
 
                     <button
                         onClick={addProductFunction}
@@ -123,6 +135,7 @@ const AddProductPage = () => {
                     >
                         Add Product
                     </button>
+                    </div>
                 </div>
             </div>
         </div>

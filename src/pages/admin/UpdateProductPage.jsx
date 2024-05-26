@@ -82,6 +82,10 @@ const UpdateProductPage = () => {
         }
     };
 
+    const cancelUpdate = () => {
+        navigate('/admin-dashboard');
+    };
+
     useEffect(() => {
         getSingleProductFunction();
     }, []);
@@ -142,13 +146,23 @@ const UpdateProductPage = () => {
                         className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
 
+                    <div className="flex space-x-4">
                     <button
-                        onClick={updateProduct}
-                        type="button"
-                        className="w-full bg-pink-500 hover:bg-pink-600 text-white py-2 rounded-md text-lg font-bold transition-colors"
-                    >
-                        Update Product
-                    </button>
+                            onClick={cancelUpdate}
+                            type="button"
+                            className="w-full bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-md text-lg font-bold transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onClick={updateProduct}
+                            type="button"
+                            className="w-full bg-pink-500 hover:bg-pink-600 text-white py-2 rounded-md text-lg font-bold transition-colors"
+                        >
+                            Update Product
+                        </button>
+                        
+                    </div>
                 </div>
             </div>
         </div>
