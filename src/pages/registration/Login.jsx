@@ -20,7 +20,7 @@ const Login = () => {
 
     const userLoginFunction = async (e) => {
         e.preventDefault(); // Prevent default form submission
-        if (userLogin.email === "" || userLogin.password === "") {
+        if (userLogin.email.trim() === "" || userLogin.password.trim() === "") {
             toast.error("All Fields are required");
             return;
         }

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
@@ -30,14 +29,29 @@ const Signup = () => {
         });
     };
 
-    /**========================================================================
-     *                          User Signup Function 
-    *========================================================================**/
+    // Password validation function
+    const validatePassword = (password) => {
+        const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return strongPasswordRegex.test(password);
+    };
 
     const userSignupFunction = async () => {
-        // validation 
-        if (userSignup.name === "" || userSignup.email === "" || userSignup.password === "" || userSignup.role === "") {
+        // Validation for empty fields
+        if (userSignup.name.trim() === "" || userSignup.email.trim() === "" || userSignup.password.trim() === "" || userSignup.role.trim() === "") {
             toast.error("All Fields are required");
+            return;
+        }
+
+        // Validate email format
+        const emailRegex = /\S+@\S+\.\S+/;
+        if (!emailRegex.test(userSignup.email)) {
+            toast.error("Invalid email address");
+            return;
+        }
+
+        // Validate password
+        if (!validatePassword(userSignup.password)) {
+            toast.error("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
             return;
         }
 
@@ -83,10 +97,10 @@ const Signup = () => {
             console.log(error);
             setLoading(false);
         }
-    }
+    };
 
     return (
-        <div className='flex justify-center items-center h-screen  bg-pink-100 '>
+        <div className='flex justify-center items-center h-screen bg-pink-100 '>
             {loading && <Loader />}
             {/* Signup Form */}
             <div className="signup_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md max-w-md w-full m-2">
