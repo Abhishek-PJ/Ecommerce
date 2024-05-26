@@ -124,7 +124,7 @@ const ProductInfo = () => {
     // Render JSX
     return (
         <Layout>
-            <section className="py-5 lg:py-16 font-poppins dark:bg-gray-800">
+            <section className="py-5 lg:py-16 font-poppins dark:bg-white">
                 {loading ? (
                     <div className="flex justify-center items-center">
                         <Loader />
@@ -164,13 +164,13 @@ const ProductInfo = () => {
                                     <div className="flex mb-4">
                                         <button
                                             onClick={() => addCart(product)}
-                                            className="w-full mr-2 px-4 py-3 text-center text-white bg-pink-500 border border-pink-500 hover:bg-pink-600 rounded-xl"
+                                            className="w-full mr-2 px-4 py-3 text-center text-white bg-pink-600 border border-pink-600 hover:bg-pink-700 rounded-xl"
                                         >
                                             Add to Cart
                                         </button>
                                         <button
                                             onClick={() => deleteCart(product)}
-                                            className="w-full px-4 py-3 text-center text-white bg-red-500 border border-red-500 hover:bg-red-600 rounded-xl"
+                                            className="w-full px-4 py-3 text-center text-white bg-pink-600 border border-red-500 hover:bg-gray-600 rounded-xl"
                                         >
                                             Remove from Cart
                                         </button>
@@ -191,7 +191,7 @@ const ProductInfo = () => {
                                 </div>
                                     <div className="mt-4">
                                         <p className="text-sm text-gray-600">
-                                            Free delivery by Fri, May 28
+                                            Free delivery by Fri, June 12
                                         </p>
                                         <p className="text-sm text-gray-600">
                                             Cash on Delivery available
