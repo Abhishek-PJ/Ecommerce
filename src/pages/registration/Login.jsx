@@ -19,8 +19,8 @@ const Login = () => {
     });
 
     const userLoginFunction = async (e) => {
-        e.preventDefault(); // Prevent default form submission
-        if (userLogin.email.trim() === "" || userLogin.password.trim() === "") {
+        e.preventDefault();
+        if (!userLogin.email.trim() || !userLogin.password.trim()) {
             toast.error("All Fields are required");
             return;
         }
@@ -30,60 +30,56 @@ const Login = () => {
             const users = await signInWithEmailAndPassword(auth, userLogin.email, userLogin.password);
             console.log('Login Successful:', users);
 
-            try {
-                const q = query(
-                    collection(fireDB, "user"),
-                    where('uid', '==', users.user.uid)
-                );
-                const querySnapshot = await getDocs(q);
-                let user;
-                querySnapshot.forEach((doc) => {
-                    user = doc.data();
-                });
+            const q = query(
+                collection(fireDB, "user"),
+                where('uid', '==', users.user.uid)
+            );
+            const querySnapshot = await getDocs(q);
+            let user;
+            querySnapshot.forEach((doc) => {
+                user = doc.data();
+            });
 
-                if (!user) {
-                    toast.error("User not found");
-                    setLoading(false);
-                    return;
-                }
-
-                console.log('User Data:', user);
-
-                localStorage.setItem("users", JSON.stringify(user));
-                setUserLogin({
-                    email: "",
-                    password: ""
-                });
-                toast.success("Login Successfully");
+            if (!user) {
+                toast.error("User not found");
                 setLoading(false);
+                return;
+            }
 
-                if (user.role.toLowerCase() === "user") {
-                    console.log('Navigating to /user-dashboard');
-                    navigate('/user-dashboard');
-                } else {
-                    console.log('Navigating to /admin-dashboard');
-                    navigate('/admin-dashboard');
-                }
-            } catch (error) {
-                console.log('Error fetching user data:', error);
-                setLoading(false);
-                toast.error("Failed to fetch user data");
+            console.log('User Data:', user);
+
+            localStorage.setItem("users", JSON.stringify(user));
+            console.log('User stored in localStorage:', localStorage.getItem("users"));
+            setUserLogin({
+                email: "",
+                password: ""
+            });
+            toast.success("Login Successfully");
+
+            const userRole = user.role.toLowerCase();
+            if (userRole === "user") {
+                console.log("Navigating to user dashboard");
+                navigate('/user-dashboard');
+            } else if (userRole === "admin") {
+                console.log("Navigating to admin dashboard");
+                navigate('/admin-dashboard');
+            } else {
+                toast.error("Invalid role");
             }
         } catch (error) {
-            console.log('Login Failed:', error);
-            setLoading(false);
+            console.error('Login Failed:', error);
             toast.error("Login Failed");
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div className='flex justify-center items-center min-h-screen bg-pink-100'>
             {loading && <Loader />}
-            <div className="login_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-md w-full max-w-md  m-2" >
+            <div className="login_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-md w-full max-w-md m-2">
                 <div className="mb-5">
-                    <h2 className='text-center text-2xl font-bold text-pink-600'>
-                        Login
-                    </h2>
+                    <h2 className='text-center text-2xl font-bold text-pink-600'>Login</h2>
                 </div>
 
                 <form onSubmit={userLoginFunction}>
@@ -93,12 +89,7 @@ const Login = () => {
                             name="email"
                             placeholder='Email Address'
                             value={userLogin.email}
-                            onChange={(e) => {
-                                setUserLogin({
-                                    ...userLogin,
-                                    email: e.target.value
-                                });
-                            }}
+                            onChange={(e) => setUserLogin({ ...userLogin, email: e.target.value })}
                             className='bg-pink-50 border border-pink-200 px-4 py-2 w-full rounded-md outline-none placeholder-pink-200'
                             autoComplete="email"
                         />
@@ -110,12 +101,7 @@ const Login = () => {
                             name="password"
                             placeholder='Password'
                             value={userLogin.password}
-                            onChange={(e) => {
-                                setUserLogin({
-                                    ...userLogin,
-                                    password: e.target.value
-                                });
-                            }}
+                            onChange={(e) => setUserLogin({ ...userLogin, password: e.target.value })}
                             className='bg-pink-50 border border-pink-200 px-4 py-2 w-full rounded-md outline-none placeholder-pink-200'
                             autoComplete="current-password"
                         />
