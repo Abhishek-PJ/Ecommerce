@@ -9,7 +9,7 @@ import Loader from "../../components/loader/Loader";
 const categoryList = [
     { name: 'Mens' },
     { name: 'Womens' },
-    { name: 'Beauty Products' },
+    { name: 'Beauty' },
     { name: 'Mobiles' },
     { name: 'TV' },
     { name: 'Grocery' },

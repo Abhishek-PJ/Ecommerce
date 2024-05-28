@@ -12,7 +12,7 @@ const category = [
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/512/2737/2737437.png',
-        name: 'Beauty Products'
+        name: 'Beauty'
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/256/7648/7648246.png',
