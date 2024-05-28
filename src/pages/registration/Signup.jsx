@@ -86,7 +86,12 @@ const Signup = () => {
     return (
         <div className='flex justify-center items-center h-screen bg-pink-100 '>
             {loading && <Loader />}
-            <div className="signup_Form bg-pink-50 px-8 py-6 border border-pink-100 rounded-xl shadow-md max-w-md w-full m-2">
+            <div className="signup_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-md max-w-md w-full m-2 relative">
+                <Link to="/" className="absolute top-0 left-0 p-4">
+                    <svg className="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                </Link>
                 <div className="mb-5">
                     <h2 className='text-center text-2xl font-bold text-pink-500 '>Signup</h2>
                 </div>
@@ -127,7 +132,7 @@ const Signup = () => {
                         placeholder='Full Name'
                         value={userSignup.name}
                         onChange={(e) => setUserSignup({ ...userSignup, name: e.target.value })}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-pink-200'
+                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500'
                     />
                 </div>
 
@@ -137,7 +142,7 @@ const Signup = () => {
                         placeholder='Email Address'
                         value={userSignup.email}
                         onChange={(e) => setUserSignup({ ...userSignup, email: e.target.value })}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-pink-200'
+                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500'
                     />
                 </div>
 
@@ -147,7 +152,7 @@ const Signup = () => {
                         placeholder='Password'
                         value={userSignup.password}
                         onChange={(e) => setUserSignup({ ...userSignup, password: e.target.value })}
-                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-pink-200'
+                        className='bg-pink-50 border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500'
                     />
                 </div>
 
