@@ -35,7 +35,7 @@ const AllProduct = () => {
             <div className="py-8">
                 {/* Heading */}
                 <div className="text-center mb-5">
-                    <h1 className="text-2xl font-semibold">All Products</h1>
+                    <h1 className="text-3xl font-bold text-gray-800">All Products</h1>
                 </div>
 
                 {/* Main Content */}
@@ -49,14 +49,14 @@ const AllProduct = () => {
                                 const { id, title, price, productImageUrl } = item;
                                 return (
                                     <div key={index} className="p-4 w-full sm:w-1/2 lg:w-1/4">
-                                        <div className="h-full border border-gray-300 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                                        <div className="h-full border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-transform duration-300 ease-in-out cursor-pointer">
                                             <img
                                                 onClick={() => navigate(`/productinfo/${id}`)}
-                                                className="lg:h-80 h-52 w-full object-cover"
+                                                className="lg:h-80 h-52 w-full object-cover rounded-t-2xl transition-transform duration-300 ease-in-out hover:scale-105"
                                                 src={productImageUrl}
                                                 alt={title}
                                             />
-                                            <div className="p-6">
+                                            <div className="p-6 bg-white">
                                                 <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                                     E-Commerce
                                                 </h2>
@@ -70,13 +70,13 @@ const AllProduct = () => {
                                                     {cartItems.some((p) => p.id === item.id) ? (
                                                         <button
                                                             onClick={() => deleteCart(item)}
-                                                            className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-bold transition-colors w-full">
+                                                            className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-bold transition-colors duration-300 ease-in-out w-full">
                                                             Delete From Cart
                                                         </button>
                                                     ) : (
                                                         <button
                                                             onClick={() => addCart(item)}
-                                                            className="bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-lg font-bold transition-colors w-full">
+                                                            className="bg-gradient-to-r from-pink-500 to-orange-500 hover:from-orange-500 hover:to-pink-500 text-white py-2 px-4 rounded-lg font-bold transition-all duration-300 ease-in-out w-full">
                                                             Add To Cart
                                                         </button>
                                                     )}
