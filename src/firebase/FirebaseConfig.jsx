@@ -15,14 +15,15 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 
+
 const firebaseConfig = {
-    apiKey: "AIzaSyAeUCCYYSMnTNUWu2qjz7Sc5QGOD4r-Naw",
-    authDomain: "ecommerce-react-b607c.firebaseapp.com",
-    projectId: "ecommerce-react-b607c",
-    storageBucket: "ecommerce-react-b607c.appspot.com",
-    messagingSenderId: "537084935584",
-    appId: "1:537084935584:web:026ad4a996e60f13c5b8c5",
-    measurementId: "G-TWFPMHPCEF"
+  apiKey: "AIzaSyD4E72VkIynXf-uqLUqPc4yywGCH1IRGuQ",
+  authDomain: "e-commerce-4e67e.firebaseapp.com",
+  projectId: "e-commerce-4e67e",
+  storageBucket: "e-commerce-4e67e.appspot.com",
+  messagingSenderId: "515303367724",
+  appId: "1:515303367724:web:eacba6a647ea4467999d89",
+  measurementId: "G-E32MFZZCND"
   };
 
 
@@ -35,4 +36,5 @@ const fireDB = getFirestore(app);
 const auth = getAuth(app);
 const db = getFirestore();
 
-export { fireDB, auth , db }
+
+export { fireDB, auth , db   }
