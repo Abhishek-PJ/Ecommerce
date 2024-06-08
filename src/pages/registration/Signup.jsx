@@ -219,6 +219,10 @@ const Signup = () => {
         <div className="mb-5">
           <Googleauthpage />
         </div>
+        <span className=" text-red-400">Google signup bydefault registers you as User.
+          For registering as admin use only form registration.
+        </span>
+        <br /><br />
 
 
         <div>

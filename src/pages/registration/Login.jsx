@@ -130,7 +130,7 @@ const Login = () => {
                 </div>
 
                 <div className="m-1">
-                    <h2 className='text-black flex justify-center'>Don't Have an account <Link className='text-pink-500 font-bold' to={'/signup'}>Signup</Link></h2>
+                    <h2 className='text-black font-bold flex justify-center'>Don't Have an account? <Link className='text-pink-700  mx-2 font-bold' to={'/signup'}>Signup</Link></h2>
                 </div>
             </div>
         </div>
