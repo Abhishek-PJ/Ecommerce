@@ -20,7 +20,7 @@ import { Toaster } from "react-hot-toast";
 import { ProtectedRouteForUser } from "./protectedRoute/ProtectedRouteForUser";
 import { ProtectedRouteForAdmin } from "./protectedRoute/ProtectedRouteForAdmin";
 import CategoryPage from "./pages/category/CategoryPage";
-import {Userprofileupdate }from "./pages/user/Userprofileupdate"
+import Userprofileupdate from "./pages/user/Userprofileupdate";
 
 const App = () => {
   return (
