@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import Loader from "../../components/loader/Loader";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import Googleauthpage from "./Googleauthpage";
 
 const Login = () => {
     const context = useContext(myContext);
@@ -121,9 +122,15 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
+                
+                <h2 className="text-gray-700 font-extrabold flex justify-center">OR</h2>
+                
+                <div className="mb-5">
+                    <Googleauthpage />
+                </div>
 
-                <div>
-                    <h2 className='text-black'>Don't Have an account <Link className=' text-pink-500 font-bold' to={'/signup'}>Signup</Link></h2>
+                <div className="m-1">
+                    <h2 className='text-black flex justify-center'>Don't Have an account <Link className='text-pink-500 font-bold' to={'/signup'}>Signup</Link></h2>
                 </div>
             </div>
         </div>

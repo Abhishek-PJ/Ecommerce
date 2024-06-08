@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react';
 import MyContext from './myContext';
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
-import { fireDB } from '../firebase/FirebaseConfig';
+import { fireDB, auth } from '../firebase/FirebaseConfig';
 import toast from 'react-hot-toast';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function MyState({ children }) {
     // Loading State 
@@ -11,6 +12,7 @@ function MyState({ children }) {
 
     // User State
     const [getAllProduct, setGetAllProduct] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
 
     /**========================================================================
      *                          GET All Product Function
@@ -70,7 +72,7 @@ function MyState({ children }) {
     }
 
 
-    // Delete oder Function
+    // Delete order Function
     const orderDelete = async (id) => {
         setLoading(true)
         try {
@@ -85,7 +87,7 @@ function MyState({ children }) {
     }
 
 
-    // user State 
+    // User State 
     const [getAllUser, setGetAllUser] = useState([]);
 
 
@@ -119,7 +121,20 @@ function MyState({ children }) {
         getAllProductFunction();
         getAllOrderFunction();
         getAllUserFunction();
+
+        // Monitor auth state changes
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const storedUser = JSON.parse(localStorage.getItem("users"));
+                setCurrentUser(storedUser);
+            } else {
+                setCurrentUser(null);
+            }
+        });
+
+        return () => unsubscribe();
     }, []);
+    
     return (
         <MyContext.Provider value={{
             loading,
@@ -128,12 +143,13 @@ function MyState({ children }) {
             getAllProductFunction,
             getAllOrder,
             orderDelete,
-            getAllUser
+            getAllUser,
+            currentUser,
+            setCurrentUser
         }}>
             {children}
         </MyContext.Provider>
     )
 }
 
-export default MyState
-
+export default MyState;

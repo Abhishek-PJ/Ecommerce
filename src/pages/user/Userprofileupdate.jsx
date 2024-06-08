@@ -38,7 +38,7 @@ const Userprofileupdate = () => {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="shadow appearance-none border-2 border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border-3 border-gray-300 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:border-pink-500"
                             placeholder="Enter your name"
                         />
                     </div>
@@ -50,7 +50,7 @@ const Userprofileupdate = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="shadow appearance-none border-2 border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="shadow appearance-none border-3 border-gray-300  hover:border-pink-500 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter your email"
                         />
                     </div>

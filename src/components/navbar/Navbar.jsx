@@ -7,7 +7,7 @@ import { clearCart } from "../../redux/cartSlice";
 
 const Navbar = () => {
   // Get user from localStorage
-  let user = localStorage.getItem('users');
+  const user = localStorage.getItem('users');
   let parsedUser = null;
 
   if (user) {
@@ -63,36 +63,17 @@ const Navbar = () => {
         </button>
         {isDropdownOpen && (
           <ul className="absolute bg-white text-black rounded-lg shadow-lg mt-2 py-2 w-48 z-50">
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/Mens'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>Mens</Link>
-            </li>
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/Womens'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>Womens</Link>
-            </li>
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/Beauty'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>Beauty</Link>
-            </li>
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/Mobiles'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>Mobiles</Link>
-            </li>
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/TV'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>TV</Link>
-            </li>
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/Grocery'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>Grocery</Link>
-            </li>
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/Kitchen'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>Kitchen</Link>
-            </li>
-            <li className="hover:bg-gray-200 transition duration-200">
-              <Link to={'/category/Books'} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>Books</Link>
-            </li>
+            {['Mens', 'Womens', 'Beauty', 'Mobiles', 'TV', 'Grocery', 'Kitchen', 'Books'].map(category => (
+              <li className="hover:bg-gray-200 transition duration-200" key={category}>
+                <Link to={`/category/${category}`} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>{category}</Link>
+              </li>
+            ))}
           </ul>
         )}
       </li>
 
-      {/* Signup */}
-      {!parsedUser ? (
+      {/* Signup and Login */}
+      {!parsedUser && (
         <>
           <li className="hover:text-gray-300 transition duration-300">
             <Link to={'/signup'} onClick={() => setIsMobileMenuOpen(false)}>Signup</Link>
@@ -101,17 +82,17 @@ const Navbar = () => {
             <Link to={'/login'} onClick={() => setIsMobileMenuOpen(false)}>Login</Link>
           </li>
         </>
-      ) : null}
+      )}
 
-      {/* User */}
-      {parsedUser?.role === "user" && (
+      {/* User Dashboard */}
+      {parsedUser?.role === "User" && (
         <li className="hover:text-gray-300 transition duration-300">
           <Link to={'/user-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>User</Link>
         </li>
       )}
 
-      {/* Admin */}
-      {parsedUser?.role === "admin" && (
+      {/* Admin Dashboard */}
+      {parsedUser?.role === "Admin" && (
         <li className="hover:text-gray-300 transition duration-300">
           <Link to={'/admin-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>Admin</Link>
         </li>
@@ -139,7 +120,7 @@ const Navbar = () => {
         {/* Logo and Menu Button */}
         <div className="flex justify-between items-center w-full lg:w-auto">
           <Link to={'/'}>
-            <h2 className="font-bold text-white text-2xl lg:text-3xl tracking-wide">E-Commerce</h2>
+            <span className="font-bold text-white text-2xl lg:text-3xl tracking-wide ml-1 lg:ml-0">E-Commerce</span>
           </Link>
           <div className="lg:hidden py-1 px-1">
             <button
