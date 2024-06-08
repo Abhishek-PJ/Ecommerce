@@ -4,6 +4,8 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { auth, fireDB } from '../../firebase/FirebaseConfig';
 import { collection, getDocs, query, where, addDoc, Timestamp } from 'firebase/firestore';
+import signingoogle from '../../assets/signingoogle.png'; // Adjust the import path according to your project structure
+
 const Googleauthpage = () => {
     const navigate = useNavigate();
 
@@ -27,7 +29,7 @@ const Googleauthpage = () => {
                     name: user.displayName,
                     email: user.email,
                     uid: user.uid,
-                    role: "User", // default role
+                    role: "user", // default role
                     time: Timestamp.now(),
                     date: new Date().toLocaleString("en-US", {
                         month: "short",
@@ -58,7 +60,7 @@ const Googleauthpage = () => {
     return (
         <div onClick={handleGoogleLogin} className="cursor-pointer flex justify-center">
             <img 
-                src="src\pages\registration\signingoogle.png"
+                src={signingoogle} 
                 alt="Sign in with Google" 
                 style={{ width: 250, height: 100 }} 
             />
