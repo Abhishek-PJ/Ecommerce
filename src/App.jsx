@@ -20,6 +20,7 @@ import { Toaster } from "react-hot-toast";
 import { ProtectedRouteForUser } from "./protectedRoute/ProtectedRouteForUser";
 import { ProtectedRouteForAdmin } from "./protectedRoute/ProtectedRouteForAdmin";
 import CategoryPage from "./pages/category/CategoryPage";
+import {Userprofileupdate }from "./pages/user/Userprofileupdate"
 
 const App = () => {
   return (
@@ -38,6 +39,11 @@ const App = () => {
           <Route path="/user-dashboard" element={
             <ProtectedRouteForUser>
               <UserDashboard />
+            </ProtectedRouteForUser>
+          } />
+           <Route path="/Userprofileupdate" element={
+            <ProtectedRouteForUser>
+              <Userprofileupdate/>
             </ProtectedRouteForUser>
           } />
           <Route path="/admin-dashboard" element={
