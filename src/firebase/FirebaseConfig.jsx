@@ -12,9 +12,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
 
-
-
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD4E72VkIynXf-uqLUqPc4yywGCH1IRGuQ",
   authDomain: "e-commerce-4e67e.firebaseapp.com",
@@ -22,16 +22,14 @@ const firebaseConfig = {
   storageBucket: "e-commerce-4e67e.appspot.com",
   messagingSenderId: "515303367724",
   appId: "1:515303367724:web:eacba6a647ea4467999d89",
-  measurementId: "G-E32MFZZCND"
-  };
-
+  measurementId: "G-E32MFZZCND" // This can be removed if not using analytics
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 const fireDB = getFirestore(app);
 const auth = getAuth(app);
-const db = getFirestore();
+const storage = getStorage(app);
 
-
-export { fireDB, auth , db   }
+export { fireDB, auth, storage };

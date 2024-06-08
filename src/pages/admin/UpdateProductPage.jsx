@@ -5,6 +5,8 @@ import { Timestamp, doc, getDoc, setDoc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
+import { storage } from "../../firebase/FirebaseConfig";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const categoryList = [
     { name: 'Mens' },
@@ -41,6 +43,8 @@ const UpdateProductPage = () => {
         )
     });
 
+    const [newImage, setNewImage] = useState(null);
+
     const getSingleProductFunction = async () => {
         setLoading(true);
         try {
@@ -64,20 +68,49 @@ const UpdateProductPage = () => {
     };
 
     const updateProduct = async () => {
-        if (product.title === "" || product.price === "" || product.productImageUrl === "" || product.category === "" || product.description === "") {
+        if (product.title === "" || product.price === "" || product.category === "" || product.description === "") {
             return toast.error("All fields are required");
         }
 
         setLoading(true);
         try {
-            await setDoc(doc(fireDB, 'products', id), product);
-            toast.success("Product updated successfully");
-            getAllProductFunction();
-            navigate('/admin-dashboard');
+            if (newImage) {
+                // Upload the new image first if there's a new image
+                const imgRef = ref(storage, `images/${newImage.name}`);
+                const uploadTask = uploadBytesResumable(imgRef, newImage);
+
+                uploadTask.on(
+                    "state_changed",
+                    (snapshot) => {
+                        // Optional: Can implement a progress indicator here
+                    },
+                    (error) => {
+                        console.error(error);
+                        toast.error("Failed to upload image");
+                        setLoading(false);
+                    },
+                    async () => {
+                        // Get the download URL and update the product in Firestore
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        const updatedProduct = { ...product, productImageUrl: downloadURL };
+                        await setDoc(doc(fireDB, 'products', id), updatedProduct);
+                        toast.success("Product updated successfully");
+                        getAllProductFunction();
+                        navigate('/admin-dashboard');
+                        setLoading(false);
+                    }
+                );
+            } else {
+                // If there's no new image, just update the product details
+                await setDoc(doc(fireDB, 'products', id), product);
+                toast.success("Product updated successfully");
+                getAllProductFunction();
+                navigate('/admin-dashboard');
+                setLoading(false);
+            }
         } catch (error) {
             console.log(error);
             toast.error("Failed to update product");
-        } finally {
             setLoading(false);
         }
     };
@@ -126,6 +159,12 @@ const UpdateProductPage = () => {
                         className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
 
+                    <input
+                        type="file"
+                        onChange={(e) => setNewImage(e.target.files[0])}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    />
+
                     <select
                         value={product.category}
                         onChange={(e) => setProduct({ ...product, category: e.target.value })}
@@ -147,7 +186,7 @@ const UpdateProductPage = () => {
                     />
 
                     <div className="flex space-x-4">
-                    <button
+                        <button
                             onClick={cancelUpdate}
                             type="button"
                             className="w-full bg-gray-500 hover:bg-gray-600 text-white py-2 rounded-md text-lg font-bold transition-colors"
@@ -161,7 +200,6 @@ const UpdateProductPage = () => {
                         >
                             Update Product
                         </button>
-                        
                     </div>
                 </div>
             </div>
