@@ -88,14 +88,14 @@ const Navbar = () => {
       {parsedUser && (
         <>
           {/* User Dashboard */}
-          {parsedUser.role === "User" && (
+          {parsedUser.role.toLowerCase() === "user" && (
             <li className="hover:text-gray-300 transition duration-300">
               <Link to={'/user-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>User</Link>
             </li>
           )}
 
           {/* Admin Dashboard */}
-          {parsedUser.role === "Admin" && (
+          {parsedUser.role.toLowerCase() === "admin" && (
             <li className="hover:text-gray-300 transition duration-300">
               <Link to={'/admin-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>Admin</Link>
             </li>
