@@ -13,16 +13,16 @@ const Googleauthpage = () => {
         try {
             const result = await signInWithPopup(auth, new GoogleAuthProvider());
             const user = result.user;
-
+    
             const userRef = collection(fireDB, "user");
             const q = query(userRef, where("uid", "==", user.uid));
             const querySnapshot = await getDocs(q);
-
+    
             let userData = null;
             querySnapshot.forEach((doc) => {
                 userData = doc.data();
             });
-
+    
             if (!userData) {
                 // New user, add to Firestore
                 const newUser = {
@@ -40,10 +40,10 @@ const Googleauthpage = () => {
                 await addDoc(userRef, newUser);
                 userData = newUser;
             }
-
+    
             localStorage.setItem("users", JSON.stringify(userData));
             toast.success(`Welcome ${user.displayName}!`);
-
+    
             const userRole = userData.role.toLowerCase();
             if (userRole === "user") {
                 navigate('/user-dashboard');
@@ -56,6 +56,7 @@ const Googleauthpage = () => {
             toast.error(`Authentication failed: ${error.message}`);
         }
     };
+    
 
     return (
         <div onClick={handleGoogleLogin} className="cursor-pointer flex justify-center">
