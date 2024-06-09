@@ -31,24 +31,28 @@ function MyState({ children }) {
         }
     };
 
-    const getAllOrderFunction = async () => {
-        setLoading(true);
-        try {
-            const q = query(collection(fireDB, "order"), orderBy('time'));
-            const data = onSnapshot(q, (QuerySnapshot) => {
-                let orderArray = [];
-                QuerySnapshot.forEach((doc) => {
-                    orderArray.push({ ...doc.data(), id: doc.id });
-                });
-                setGetAllOrder(orderArray);
-                setLoading(false);
+   // In MyState.js
+
+const getAllOrderFunction = async () => {
+    setLoading(true);
+    try {
+        const q = query(collection(fireDB, "order"), orderBy('time'));
+        const data = onSnapshot(q, (QuerySnapshot) => {
+            let orderArray = [];
+            QuerySnapshot.forEach((doc) => {
+                orderArray.push({ ...doc.data(), id: doc.id });
             });
-            return () => data;
-        } catch (error) {
-            console.log(error);
+            setGetAllOrder(orderArray);
             setLoading(false);
-        }
-    };
+        });
+        return () => data;
+    } catch (error) {
+        console.log(error);
+        toast.error('Error fetching orders');
+        setLoading(false);
+    }
+};
+
 
     const orderDelete = async (id) => {
         setLoading(true);
