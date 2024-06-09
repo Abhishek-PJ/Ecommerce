@@ -46,7 +46,7 @@ const Googleauthpage = () => {
     
             const userRole = userData.role.toLowerCase();
             if (userRole === "user") {
-                navigate('/user-dashboard');
+                navigate('/');
             } else if (userRole === "admin") {
                 navigate('/admin-dashboard');
             } else {

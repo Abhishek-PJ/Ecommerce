@@ -91,7 +91,7 @@ const Signup = () => {
       });
 
       toast.success("Signup Successfully");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error(error);
       toast.error("Signup Failed");

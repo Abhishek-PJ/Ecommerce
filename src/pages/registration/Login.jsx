@@ -25,12 +25,12 @@ const Login = () => {
             toast.error("All Fields are required");
             return;
         }
-
+    
         setLoading(true);
         try {
             const users = await signInWithEmailAndPassword(auth, userLogin.email, userLogin.password);
             console.log('Login Successful:', users);
-
+    
             const q = query(
                 collection(fireDB, "user"),
                 where('uid', '==', users.user.uid)
@@ -40,15 +40,14 @@ const Login = () => {
             querySnapshot.forEach((doc) => {
                 user = doc.data();
             });
-
+    
             if (!user) {
                 toast.error("User not found");
                 setLoading(false);
                 return;
             }
-
-            console.log('User Data:', user);
-
+    
+    
             localStorage.setItem("users", JSON.stringify(user));
             console.log('User stored in localStorage:', localStorage.getItem("users"));
             setUserLogin({
@@ -57,9 +56,13 @@ const Login = () => {
             });
             toast.success("Login Successfully");
 
+    
+            // Log the user role
             const userRole = user.role.toLowerCase();
-            if (userRole === "user") {
-                console.log("Navigating to Home page");
+            console.log(userRole);
+    
+            if (userRole === "user") {            
+                    console.log("Navigating to Home page");
                 navigate('/');
             } else if (userRole === "admin") {
                 console.log("Navigating to admin dashboard");
@@ -74,6 +77,8 @@ const Login = () => {
             setLoading(false);
         }
     };
+    
+    
 
     return (
         <div className='flex justify-center items-center min-h-screen bg-pink-100'>
