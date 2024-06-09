@@ -20,7 +20,7 @@ const Navbar = () => {
 
   // Navigate
   const navigate = useNavigate();
-  
+
   // Use dispatch hook
   const dispatch = useDispatch();
 
@@ -84,25 +84,28 @@ const Navbar = () => {
         </>
       )}
 
-      {/* User Dashboard */}
-      {parsedUser?.role === "User" && (
-        <li className="hover:text-gray-300 transition duration-300">
-          <Link to={'/user-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>User</Link>
-        </li>
-      )}
-
-      {/* Admin Dashboard */}
-      {parsedUser?.role === "Admin" && (
-        <li className="hover:text-gray-300 transition duration-300">
-          <Link to={'/admin-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>Admin</Link>
-        </li>
-      )}
-
-      {/* Logout */}
+      {/* Logged-in User/Admin NavLinks */}
       {parsedUser && (
-        <li className="cursor-pointer hover:text-gray-300 transition duration-300" onClick={logout}>
-          Logout
-        </li>
+        <>
+          {/* User Dashboard */}
+          {parsedUser.role === "User" && (
+            <li className="hover:text-gray-300 transition duration-300">
+              <Link to={'/user-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>User</Link>
+            </li>
+          )}
+
+          {/* Admin Dashboard */}
+          {parsedUser.role === "Admin" && (
+            <li className="hover:text-gray-300 transition duration-300">
+              <Link to={'/admin-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>Admin</Link>
+            </li>
+          )}
+
+          {/* Logout */}
+          <li className="cursor-pointer hover:text-gray-300 transition duration-300" onClick={logout}>
+            Logout
+          </li>
+        </>
       )}
 
       {/* Cart */}
