@@ -59,8 +59,8 @@ const Login = () => {
 
             const userRole = user.role.toLowerCase();
             if (userRole === "user") {
-                console.log("Navigating to user dashboard");
-                navigate('/user-dashboard');
+                console.log("Navigating to Home page");
+                navigate('/');
             } else if (userRole === "admin") {
                 console.log("Navigating to admin dashboard");
                 navigate('/admin-dashboard');
