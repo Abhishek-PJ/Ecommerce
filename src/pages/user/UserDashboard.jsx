@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import myContext from "../../context/myContext";
 import Loader from "../../components/loader/Loader";
@@ -6,8 +6,35 @@ import { Link } from "react-router-dom";
 
 const UserDashboard = () => {
     const user = JSON.parse(localStorage.getItem('users'));
+    console.log(user);
     const context = useContext(myContext);
     const { loading, getAllOrder } = context;
+    const [profilePhoto, setProfilePhoto] = useState(null);
+
+    useEffect(() => {
+        // Fetch profile photo from Google API if available
+        if (user?.accessToken) {
+            fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Failed to fetch user info from Google API");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                setProfilePhoto(data.picture);
+            })
+            .catch((error) => {
+                console.error("Error fetching profile photo:", error);
+            });
+        }
+    }, [user]);
+    
 
     return (
         <Layout>
@@ -17,7 +44,7 @@ const UserDashboard = () => {
                     <div className="mb-8">
                         <h2 className="text-2xl font-bold mb-4">Profile Information</h2>
                         <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-4">
-                            <img src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" alt="Profile" className="w-24 h-24 rounded-full border-4 border-pink-500" />
+                            <img src={profilePhoto || "https://cdn-icons-png.flaticon.com/128/2202/2202112.png"} alt="Profile" className="w-24 h-24 rounded-full border-4 border-pink-500" />
                             <div className="text-center lg:text-left">
                                 <h3 className="text-2xl font-bold">{user?.name}</h3>
                                 <p className="text-gray-600">Email: {user?.email}</p>
