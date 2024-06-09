@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
     const [open, setOpen] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState("cash_on_delivery"); // Default to cash on delivery
+    const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
     const handleOpen = () => setOpen(!open);
@@ -31,6 +32,30 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
         }
     };
 
+    const validateInputs = () => {
+        const newErrors = {};
+        if (!addressInfo.name) newErrors.name = "Name is required";
+        if (!addressInfo.address) newErrors.address = "Address is required";
+        if (!addressInfo.pincode) newErrors.pincode = "Pincode is required";
+        if (!addressInfo.mobileNumber) newErrors.mobileNumber = "Mobile number is required";
+        if (addressInfo.mobileNumber && !/^\d{10}$/.test(addressInfo.mobileNumber)) {
+            newErrors.mobileNumber = "Mobile number must be 10 digits";
+        }
+        if (!addressInfo.email) newErrors.email = "Email is required";
+        if (addressInfo.email && !/\S+@\S+\.\S+/.test(addressInfo.email)) {
+            newErrors.email = "Email is invalid";
+        }
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = () => {
+        if (validateInputs()) {
+            handleOpen();
+            buyNowFunction();
+        }
+    };
+
     return (
         <>
             <Button
@@ -50,34 +75,54 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                         value={addressInfo.name}
                         onChange={handleAddressChange}
                         placeholder="Enter your full name"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                        className={`w-full px-4 py-2 border ${errors.name ? 'border-red-500' : 'border-gray-300'} rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500`}
                     />
+                    {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                     <input
                         type="text"
                         name="address"
                         value={addressInfo.address}
                         onChange={handleAddressChange}
                         placeholder="Enter your full address"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                        className={`w-full px-4 py-2 border ${errors.address ? 'border-red-500' : 'border-gray-300'} rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500`}
                     />
+                    {errors.address && <p className="text-red-500 text-sm">{errors.address}</p>}
                     <input
                         type="number"
                         name="pincode"
                         value={addressInfo.pincode}
                         onChange={handleAddressChange}
                         placeholder="Enter your pincode"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                        className={`w-full px-4 py-2 border ${errors.pincode ? 'border-red-500' : 'border-gray-300'} rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500`}
                     />
+                    {errors.pincode && <p className="text-red-500 text-sm">{errors.pincode}</p>}
                     <input
                         type="text"
                         name="mobileNumber"
                         value={addressInfo.mobileNumber}
                         onChange={handleAddressChange}
                         placeholder="Enter your mobile number"
+                        className={`w-full px-4 py-2 border ${errors.mobileNumber ? 'border-red-500' : 'border-gray-300'} rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500`}
+                    />
+                    {errors.mobileNumber && <p className="text-red-500 text-sm">{errors.mobileNumber}</p>}
+                    <input
+                        type="email"
+                        name="email"
+                        value={addressInfo.email}
+                        onChange={handleAddressChange}
+                        placeholder="Enter your email address"
+                        className={`w-full px-4 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500`}
+                    />
+                    {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                    <textarea
+                        name="orderNotes"
+                        value={addressInfo.orderNotes}
+                        onChange={handleAddressChange}
+                        placeholder="Order notes (optional)"
                         className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
                     />
-                    {/* Rest of the sections */}
 
+                    {/* Payment method section */}
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Payment Method</h2>
                     <div className="flex flex-col space-y-2">
                         <label className="flex items-center space-x-2">
@@ -132,10 +177,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                         </Button>
                         <Button
                             type="button"
-                            onClick={() => {
-                                handleOpen();
-                                buyNowFunction();
-                            }}
+                            onClick={handleSubmit}
                             className="w-full px-4 py-3 text-center text-white bg-pink-600 border border-transparent hover:bg-pink-700 rounded-lg transition duration-100 ease-in-out"
                         >
                             Buy Now
