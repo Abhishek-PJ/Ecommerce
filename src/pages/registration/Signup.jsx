@@ -6,7 +6,7 @@ import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
-import Googleauthpage from "./Googleauthpage"; // Correct casing
+import GoogleAuthPage from "./GoogleAuthPage"; // Correct casing
 
 const Signup = () => {
   const context = useContext(myContext);
@@ -18,15 +18,8 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    role: "",
+    role: "User", // Default role set to User
   });
-
-  const handleRoleChange = (event) => {
-    setUserSignup({
-      ...userSignup,
-      role: event.target.value,
-    });
-  };
 
   const validatePassword = (password) => {
     const strongPasswordRegex =
@@ -38,8 +31,7 @@ const Signup = () => {
     if (
       !userSignup.name.trim() ||
       !userSignup.email.trim() ||
-      !userSignup.password.trim() ||
-      !userSignup.role.trim()
+      !userSignup.password.trim()
     ) {
       toast.error("All Fields are required");
       return;
@@ -125,26 +117,6 @@ const Signup = () => {
             Signup
           </h2>
         </div>
-            <div className="flex items-center">
-              <input
-                type="radio"
-                id="user"
-                name="userRole"
-                value="User"
-                checked={userSignup.role === "User"}
-                onChange={handleRoleChange}
-                className="mr-2"
-              />
-              <label
-                htmlFor="user"
-                className="text-sm font-medium text-gray-700"
-              >
-                User
-              </label>
-            </div>
-          </div>
-        </div>
-
         <div className="mb-3">
           <input
             type="text"
@@ -156,7 +128,6 @@ const Signup = () => {
             className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
           />
         </div>
-
         <div className="mb-3">
           <input
             type="email"
@@ -168,7 +139,6 @@ const Signup = () => {
             className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
           />
         </div>
-
         <div className="mb-5">
           <input
             type="password"
@@ -180,7 +150,6 @@ const Signup = () => {
             className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
           />
         </div>
-
         <div className="mb-5">
           <button
             type="button"
@@ -190,18 +159,13 @@ const Signup = () => {
             Signup
           </button>
         </div>
-
         <h2 className="text-gray-700 font-extrabold flex justify-center">OR</h2>
-
         <div className="mb-5">
-          <Googleauthpage />
+          <GoogleAuthPage />
         </div>
-        <span className=" text-red-400">Google signup bydefault registers you as User.
-          For registering as admin use only form registration.
+        <span className="text-red-400">
+          Google signup by default registers you as a User. For registering as an admin, use only form registration.
         </span>
-        <br /><br />
-
-
         <div>
           <h2 className="text-black text-center">
             Have an account?{" "}
