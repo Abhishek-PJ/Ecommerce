@@ -125,29 +125,6 @@ const Signup = () => {
             Signup
           </h2>
         </div>
-
-        <div className="mb-5">
-          <label className="mb-2 text-lg text-pink-600 font-semibold">
-            Select Role:
-          </label>
-          <div className="flex space-x-4">
-            <div className="flex items-center">
-              <input
-                type="radio"
-                id="admin"
-                name="userRole"
-                value="Admin"
-                checked={userSignup.role === "Admin"}
-                onChange={handleRoleChange}
-                className="mr-2"
-              />
-              <label
-                htmlFor="admin"
-                className="text-sm font-medium text-gray-700"
-              >
-                Admin
-              </label>
-            </div>
             <div className="flex items-center">
               <input
                 type="radio"
