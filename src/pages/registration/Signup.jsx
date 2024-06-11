@@ -6,7 +6,7 @@ import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader";
-import GoogleAuthPage from "./GoogleAuthPage"; // Correct casing
+import Googleauthpage from "./Googleauthpage"; // Correct casing
 
 const Signup = () => {
   const context = useContext(myContext);
@@ -27,7 +27,9 @@ const Signup = () => {
     return strongPasswordRegex.test(password);
   };
 
-  const userSignupFunction = async () => {
+  const userSignupFunction = async (e) => {
+    e.preventDefault();
+
     if (
       !userSignup.name.trim() ||
       !userSignup.email.trim() ||
@@ -117,51 +119,55 @@ const Signup = () => {
             Signup
           </h2>
         </div>
-        <div className="mb-3">
-          <input
-            type="text"
-            placeholder="Full Name"
-            value={userSignup.name}
-            onChange={(e) =>
-              setUserSignup({ ...userSignup, name: e.target.value })
-            }
-            className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
-          />
-        </div>
-        <div className="mb-3">
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={userSignup.email}
-            onChange={(e) =>
-              setUserSignup({ ...userSignup, email: e.target.value })
-            }
-            className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
-          />
-        </div>
-        <div className="mb-5">
-          <input
-            type="password"
-            placeholder="Password"
-            value={userSignup.password}
-            onChange={(e) =>
-              setUserSignup({ ...userSignup, password: e.target.value })
-            }
-            className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
-          />
-        </div>
-        <div className="mb-5">
-          <button
-            type="button"
-            onClick={userSignupFunction}
-            className="bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md"
-          >
-            Signup
-          </button>
-        </div>
+        <form onSubmit={userSignupFunction}>
+          <div className="mb-3">
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={userSignup.name}
+              onChange={(e) =>
+                setUserSignup({ ...userSignup, name: e.target.value })
+              }
+              className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="email"
+              placeholder="Email Address"
+              value={userSignup.email}
+              onChange={(e) =>
+                setUserSignup({ ...userSignup, email: e.target.value })
+              }
+              className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
+              required
+            />
+          </div>
+          <div className="mb-5">
+            <input
+              type="password"
+              placeholder="Password"
+              value={userSignup.password}
+              onChange={(e) =>
+                setUserSignup({ ...userSignup, password: e.target.value })
+              }
+              className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
+              required
+            />
+          </div>
+          <div className="mb-5">
+            <button
+              type="submit"
+              className="bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md"
+            >
+              Signup
+            </button>
+          </div>
+        </form>
         <h2 className="text-gray-700 font-extrabold flex justify-center">OR</h2>
         <div className="mb-5">
-          <GoogleAuthPage />
+          <Googleauthpage />
         </div>
         <span className="text-red-400">
           Google signup by default registers you as a User. For registering as an admin, use only form registration.
