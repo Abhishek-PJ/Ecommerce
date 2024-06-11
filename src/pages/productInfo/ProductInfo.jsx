@@ -8,8 +8,6 @@ import Loader from "../../components/loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteFromCart } from "../../redux/cartSlice";
 import toast from "react-hot-toast";
-import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
-import { Timestamp } from "firebase/firestore";
 
 // ProductInfo component
 const ProductInfo = () => {
@@ -55,62 +53,6 @@ const ProductInfo = () => {
     // User
     const user = JSON.parse(localStorage.getItem('users'));
 
-    // Buy Now Function
-    const [addressInfo, setAddressInfo] = useState({
-        name: "",
-        address: "",
-        pincode: "",
-        mobileNumber: "",
-        time: Timestamp.now(),
-        date: new Date().toLocaleString(
-            "en-US",
-            {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-            }
-        )
-    });
-
-    const buyNowFunction = () => {
-        // Validation 
-        if (addressInfo.name === "" || addressInfo.address === "" || addressInfo.pincode === "" || addressInfo.mobileNumber === "") {
-            return toast.error("All Fields are required");
-        }
-
-        // Order Info 
-        const orderInfo = {
-            cartItems,
-            addressInfo,
-            email: user.email,
-            userid: user.uid,
-            status: "confirmed",
-            time: Timestamp.now(),
-            date: new Date().toLocaleString(
-                "en-US",
-                {
-                    month: "short",
-                    day: "2-digit",
-                    year: "numeric",
-                }
-            )
-        };
-
-        try {
-            const orderRef = collection(fireDB, 'order');
-            addDoc(orderRef, orderInfo);
-            setAddressInfo({
-                name: "",
-                address: "",
-                pincode: "",
-                mobileNumber: "",
-            });
-            toast.success("Order Placed Successfully");
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
     // Effect hook to update local storage with cart items
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -130,7 +72,6 @@ const ProductInfo = () => {
                         <Loader />
                     </div>
                 ) : (
-                    <form>
                     <div className="max-w-6xl px-4 mx-auto">
                         <div className="flex flex-wrap mb-10 -mx-4">
                             <div className="w-full md:w-1/2 px-4 mb-8">
@@ -152,7 +93,7 @@ const ProductInfo = () => {
                                             ★ ★ ★ ★ ★
                                         </p>
                                         <span className="text-black">
-                                            (5 Reviews)
+                                            (36 Reviews)
                                         </span>
                                     </div>
                                     <p className="text-xl font-semibold mb-4 text-black dark:text-gray-800">
@@ -175,20 +116,15 @@ const ProductInfo = () => {
                                             Remove from Cart
                                         </button>
                                     </div>
-                                    <div className="px-2 pb-4 font-medium text-green-700">
+                                    {/* <div className="px-2 pb-4 font-medium text-green-700">
                                         <div className="flex gap-4 mb-6">
                                             {user ? (
-                                                <BuyNowModal
-                                                    addressInfo={addressInfo}
-                                                    setAddressInfo={setAddressInfo}
-                                                    buyNowFunction={buyNowFunction}
-                                                />
+                                                <p>User is logged in</p>
                                             ) : (
                                                 <Navigate to="/login" />
-                                            )
-                                        }
-                                    </div>
-                                </div>
+                                            )}
+                                        </div>
+                                    </div> */}
                                     <div className="mt-4">
                                         <p className="text-sm text-gray-600">
                                             Free delivery by Fri, June 12
@@ -201,7 +137,6 @@ const ProductInfo = () => {
                             </div>
                         </div>
                     </div>
-                </form>
                 )}
             </section>
         </Layout>
