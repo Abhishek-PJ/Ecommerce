@@ -41,10 +41,6 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
         if (addressInfo.mobileNumber && !/^\d{10}$/.test(addressInfo.mobileNumber)) {
             newErrors.mobileNumber = "Mobile number must be 10 digits";
         }
-        if (!addressInfo.email) newErrors.email = "Email is required";
-        if (addressInfo.email && !/\S+@\S+\.\S+/.test(addressInfo.email)) {
-            newErrors.email = "Email is invalid";
-        }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -65,7 +61,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
             >
                 Buy Now
             </Button>
-            <Dialog open={open} handler={handleOpen} className="bg-pink-100 rounded-xl  border-pink-600  border-4 shadow-lg max-w-lg mx-auto p-6 ">
+            <Dialog open={open} handler={handleOpen} className="bg-white rounded-xl border-4 border-pink-600 shadow-lg max-w-lg mx-auto p-6">
                 <DialogBody className="flex flex-col space-y-4 m-2">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Shipping Address</h2>
                     {/* Address input fields */}
@@ -105,22 +101,6 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                         className={`w-full px-4 py-2 border ${errors.mobileNumber ? 'border-red-500' : 'border-gray-300'} rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500`}
                     />
                     {errors.mobileNumber && <p className="text-red-500 text-sm">{errors.mobileNumber}</p>}
-                    <input
-                        type="email"
-                        name="email"
-                        value={addressInfo.email}
-                        onChange={handleAddressChange}
-                        placeholder="Enter your email address"
-                        className={`w-full px-4 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500`}
-                    />
-                    {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-                    <textarea
-                        name="orderNotes"
-                        value={addressInfo.orderNotes}
-                        onChange={handleAddressChange}
-                        placeholder="Order notes (optional)"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500"
-                    />
 
                     {/* Payment method section */}
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Payment Method</h2>
