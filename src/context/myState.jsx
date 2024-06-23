@@ -95,6 +95,18 @@ function MyState({ children }) {
         }
     };
 
+    const cancelOrder = async (id) => {
+        setLoading(true);
+        try {
+            await deleteDoc(doc(fireDB, 'order', id));
+            toast.success('Order Deleted successfully');
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    };
+
     return (
         <MyContext.Provider value={{
             loading,
@@ -102,6 +114,7 @@ function MyState({ children }) {
             getAllProduct,
             getAllOrder,
             orderDelete,
+            cancelOrder,
             getAllUser,
             currentUser,
             setCurrentUser

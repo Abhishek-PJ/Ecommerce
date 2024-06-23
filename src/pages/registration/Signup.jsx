@@ -54,16 +54,16 @@ const Signup = () => {
 
     setLoading(true);
     try {
-      const users = await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         userSignup.email,
         userSignup.password
       );
 
-      const user = {
+      const newUser = {
         name: userSignup.name,
-        email: users.user.email,
-        uid: users.user.uid,
+        email: userCredential.user.email,
+        uid: userCredential.user.uid,
         role: userSignup.role,
         time: Timestamp.now(),
         date: new Date().toLocaleString("en-US", {
@@ -73,9 +73,8 @@ const Signup = () => {
         }),
       };
 
-      const userReference = collection(fireDB, "user");
-
-      await addDoc(userReference, user);
+      const userRef = collection(fireDB, "user");
+      await addDoc(userRef, newUser);
 
       setUserSignup({
         name: "",
@@ -84,10 +83,10 @@ const Signup = () => {
         role: "",
       });
 
-      toast.success("Signup Successfully");
-      navigate("/");
+      toast.success("Signup Successful");
+      navigate("/login"); 
     } catch (error) {
-      console.error(error);
+      console.error("Error signing up:", error);
       toast.error("Signup Failed");
     } finally {
       setLoading(false);
@@ -96,7 +95,7 @@ const Signup = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-pink-100">
-      {loading && <Loader />}
+      {loading && <Loader />} {/* Display Loader if loading is true */}
       <div className="signup_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-md max-w-md w-full m-2 relative">
         <Link to="/" className="absolute top-0 left-0 p-4">
           <svg
@@ -169,13 +168,10 @@ const Signup = () => {
         <div className="mb-5">
           <Googleauthpage />
         </div>
-        <span className="text-red-400">
-          Google signup by default registers you as a User. For registering as an admin, use only form registration.
-        </span>
         <div>
           <h2 className="text-black text-center">
             Have an account?{" "}
-            <Link className="text-pink-500 font-bold" to={"/login"}>
+            <Link className="text-pink-500 font-bold" to="/login">
               Login
             </Link>
           </h2>
