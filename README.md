@@ -1,7 +1,6 @@
 # E-Commerce Web Application
 
-Welcome to the E-Commerce Web Application! This project is built using React, Tailwind CSS, and Firebase for the backend services.
-I made this webapp for my final year project which is simple to build and manage for begginers.
+Welcome to the E-Commerce Web Application! This project is built using React, Tailwind CSS, and Firebase for the backend services. It's designed to be simple for beginners to build and manage.
 
 ## Live Demo
 
@@ -12,7 +11,6 @@ Explore the live demo of the application [here](https://abhishekprojects.online)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Folder Structure](#folder-structure)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -26,8 +24,7 @@ Explore the live demo of the application [here](https://abhishekprojects.online)
 - **Search Functionality:** Search for products dynamically.
 - **Categories:** Browse products by categories.
 - **Firebase Integration:** Real-time database and authentication using Firebase services.
-- **Google authentication:** Users can login or signup using google authentication.
-
+- **Google Authentication:** Users can log in or sign up using Google authentication.
 
 ## Installation
 
@@ -81,14 +78,10 @@ To get started with the project, follow these steps:
 - **View Orders:** Admins can view customer orders.
 - **Manage Orders:** Admins can manage customer orders.
 
-
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request or you can just email at abhia7535@gmail.com for any improvements or bug fixes.
+Contributions are welcome! Please open an issue or submit a pull request, or you can reach out via email at abhia7535@gmail.com for any improvements or bug fixes.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
