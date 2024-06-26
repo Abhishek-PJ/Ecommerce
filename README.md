@@ -1,10 +1,7 @@
-Sure, here is the README content written in Markdown language:
-
----
-
 # E-Commerce Web Application
 
 Welcome to the E-Commerce Web Application! This project is built using React, Tailwind CSS, and Firebase for the backend services.
+I made this webapp for my final year project which is simple to build and manage for begginers.
 
 ## Table of Contents
 
@@ -25,6 +22,8 @@ Welcome to the E-Commerce Web Application! This project is built using React, Ta
 - **Search Functionality:** Search for products dynamically.
 - **Categories:** Browse products by categories.
 - **Firebase Integration:** Real-time database and authentication using Firebase services.
+- **Google authentication:** Users can login or signup using google authentication.
+
 
 ## Installation
 
@@ -33,8 +32,8 @@ To get started with the project, follow these steps:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/e-commerce-webapp.git
-    cd e-commerce-webapp
+    git clone https://github.com/Abhishek-PJ/Ecommerce.git
+    cd Ecommerce
     ```
 
 2. **Install dependencies:**
@@ -43,24 +42,10 @@ To get started with the project, follow these steps:
     npm install
     ```
 
-3. **Set up Firebase:**
-
-    - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
-    - Add your Firebase configuration in a `.env` file at the root of your project:
-
-      ```env
-      REACT_APP_FIREBASE_API_KEY=your_api_key
-      REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
-      REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-      REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-      REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-      REACT_APP_FIREBASE_APP_ID=your_app_id
-      ```
-
-4. **Run the application:**
+3. **Run the application:**
 
     ```bash
-    npm start
+    npm run dev
     ```
 
     The application should now be running at `http://localhost:3000`.
@@ -90,40 +75,12 @@ To get started with the project, follow these steps:
 - **Add Product:** Admins can add new products.
 - **Update Product:** Admins can update existing products.
 - **View Orders:** Admins can view customer orders.
+- **Manage Orders:** Admins can manage customer orders.
 
-## Folder Structure
-
-Here's an overview of the project's folder structure:
-
-```
-e-commerce-webapp
-├── public
-│   └── index.html
-├── src
-│   ├── components
-│   │   ├── Navbar.jsx
-│   │   ├── SearchBar.jsx
-│   │   └── ...
-│   ├── context
-│   │   └── myContext.js
-│   ├── pages
-│   │   ├── home
-│   │   │   └── HomePage.jsx
-│   │   ├── productInfo
-│   │   │   └── ProductInfo.jsx
-│   │   ├── ...
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.js
-│   └── ...
-├── .env
-├── package.json
-└── README.md
-```
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+Contributions are welcome! Please open an issue or submit a pull request or you can just email at abhia7535@gmail.com for any improvements or bug fixes.
 
 ## License
 
@@ -131,4 +88,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-Feel free to customize this README to better fit your project's needs!
