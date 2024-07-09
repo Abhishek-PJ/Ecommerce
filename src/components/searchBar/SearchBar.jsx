@@ -28,10 +28,10 @@ const SearchBar = () => {
             {/* Search input */}
             <input
                 type="text"
-                placeholder='Search here'
+                placeholder='Search Product'
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className='bg-gray-200 placeholder-gray-400 rounded-lg px-3 py-2 w-full outline-none text-black focus:ring-2 focus:ring-blue-500'
+                className='bg-gray-100  rounded-lg px-3 py-2 w-full outline-none text-black focus:ring-2 focus:ring-blue-500'
             />
 
             {/* Search drop-down */}
