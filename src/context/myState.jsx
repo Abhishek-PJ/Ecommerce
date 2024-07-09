@@ -12,56 +12,56 @@ function MyState({ children }) {
     const [getAllOrder, setGetAllOrder] = useState([]);
     const [getAllUser, setGetAllUser] = useState([]);
 
+    const getAllProductFunction = () => {
+        setLoading(true);
+        try {
+            const q = query(collection(fireDB, "products"), orderBy('time'));
+            const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+                const productArray = QuerySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+                setGetAllProduct(productArray);
+                setLoading(false);
+            });
+            return unsubscribe;
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    };
+
+    const getAllOrderFunction = () => {
+        setLoading(true);
+        try {
+            const q = query(collection(fireDB, "order"), orderBy('time'));
+            const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+                const orderArray = QuerySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+                console.log("Fetched Orders:", orderArray);
+                setGetAllOrder(orderArray);
+                setLoading(false);
+            });
+            return unsubscribe;
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    };
+
+    const getAllUserFunction = () => {
+        setLoading(true);
+        try {
+            const q = query(collection(fireDB, "user"), orderBy('time'));
+            const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+                const userArray = QuerySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+                setGetAllUser(userArray);
+                setLoading(false);
+            });
+            return unsubscribe;
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const getAllProductFunction = () => {
-            setLoading(true);
-            try {
-                const q = query(collection(fireDB, "products"), orderBy('time'));
-                const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-                    const productArray = QuerySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                    setGetAllProduct(productArray);
-                    setLoading(false);
-                });
-                return unsubscribe;
-            } catch (error) {
-                console.log(error);
-                setLoading(false);
-            }
-        };
-
-        const getAllOrderFunction = () => {
-            setLoading(true);
-            try {
-                const q = query(collection(fireDB, "order"), orderBy('time'));
-                const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-                    const orderArray = QuerySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                    console.log("Fetched Orders:", orderArray);  // Add this line to log the fetched orders
-                    setGetAllOrder(orderArray);
-                    setLoading(false);
-                });
-                return unsubscribe;
-            } catch (error) {
-                console.log(error);
-                setLoading(false);
-            }
-        };
-
-        const getAllUserFunction = () => {
-            setLoading(true);
-            try {
-                const q = query(collection(fireDB, "user"), orderBy('time'));
-                const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-                    const userArray = QuerySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                    setGetAllUser(userArray);
-                    setLoading(false);
-                });
-                return unsubscribe;
-            } catch (error) {
-                console.log(error);
-                setLoading(false);
-            }
-        };
-
         const productUnsubscribe = getAllProductFunction();
         const orderUnsubscribe = getAllOrderFunction();
         const userUnsubscribe = getAllUserFunction();
@@ -117,7 +117,8 @@ function MyState({ children }) {
             cancelOrder,
             getAllUser,
             currentUser,
-            setCurrentUser
+            setCurrentUser,
+            getAllProductFunction // Ensure this is included in the context value
         }}>
             {children}
         </MyContext.Provider>
