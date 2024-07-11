@@ -1,15 +1,20 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Dialog, DialogBody, Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 
-const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
+const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction, userrole }) => {
     const [open, setOpen] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState("cash_on_delivery"); // Default to cash on delivery
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
-    const handleOpen = () => setOpen(!open);
+    const handleOpen = () => {
+        if (userrole !== 'admin') {
+            setOpen(!open);
+        } else {
+            alert("Admins are not allowed to place orders \nLogin as user for placing orders");
+        }
+    };
 
     const handleCancel = () => {
         setOpen(false);
