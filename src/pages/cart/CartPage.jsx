@@ -37,8 +37,17 @@ const CartPage = () => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }, [cartItems])
 
-    // user
-    const user = JSON.parse(localStorage.getItem('users'))
+    // Get user from localStorage
+  const user = localStorage.getItem('users');
+  let userrole = null;
+
+  if (user) {
+    try {
+      userrole = JSON.parse(user);
+    } catch (error) {
+      console.error('Error parsing user data:', error);
+    }
+  }
 
     // Buy Now Function
     const [addressInfo, setAddressInfo] = useState({
@@ -211,6 +220,8 @@ const CartPage = () => {
                                                 addressInfo={addressInfo}
                                                 setAddressInfo={setAddressInfo}
                                                 buyNowFunction={buyNowFunction}
+                                                userrole={userrole.role.toLowerCase()}
+            
                                             /> : <Navigate to={'/login'}/>
                                         }
                                     </div>
