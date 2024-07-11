@@ -34,7 +34,7 @@ function MyState({ children }) {
             const q = query(collection(fireDB, "order"), orderBy('time'));
             const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
                 const orderArray = QuerySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-                console.log("Fetched Orders:", orderArray);
+                // console.log("Fetched Orders:", orderArray);
                 setGetAllOrder(orderArray);
                 setLoading(false);
             });
