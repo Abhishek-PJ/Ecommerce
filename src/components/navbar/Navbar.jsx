@@ -63,7 +63,7 @@ const Navbar = () => {
         </button>
         {isDropdownOpen && (
           <ul className="absolute bg-white text-black rounded-lg shadow-lg mt-2 py-2 w-48 z-50">
-            {['Mens', 'Womens', 'Beauty', 'Mobiles', 'TV', 'Grocery', 'Kitchen', 'Books'].map(category => (
+            {['Mens', 'Womens', 'Beauty', 'Mobiles', 'TV', 'Grocery', 'Kitchen', 'Books','Hanigavana books'].map(category => (
               <li className="hover:bg-gray-200 transition duration-200" key={category}>
                 <Link to={`/category/${category}`} className="block px-4 py-2" onClick={() => setIsDropdownOpen(false)}>{category}</Link>
               </li>
