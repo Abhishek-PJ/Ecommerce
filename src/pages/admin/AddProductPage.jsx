@@ -16,7 +16,9 @@ const categoryList = [
     { name: 'TV' },
     { name: 'Grocery' },
     { name: 'Kitchen' },
-    { name: 'Books' }
+    { name: 'Books' },
+        { name: 'Hanigavana books' }
+
 ];
 
 const AddProductPage = () => {
