@@ -16,8 +16,7 @@ const categoryList = [
     { name: 'TV' },
     { name: 'Grocery' },
     { name: 'Kitchen' },
-    { name: 'Books' },
-        { name: 'Hanigavana books' }
+    { name: 'Books' }
 
 ];
 
