@@ -16,7 +16,8 @@ const categoryList = [
     { name: 'TV' },
     { name: 'Grocery' },
     { name: 'Kitchen' },
-    { name: 'Books' }
+    { name: 'Books' },
+/*Add further categories*/
 ];
 
 const UpdateProductPage = () => {
