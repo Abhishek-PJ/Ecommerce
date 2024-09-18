@@ -48,7 +48,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between">
         <p className="text-white font-semibold">© 2024 E-Commerce</p>
-        <p className="text-white mt-4 md:mt-0 font-semibold">Made by Abhishek and his team </p>
+        <p className="text-white mt-4 md:mt-0 font-semibold"><strong>Made by Abhishek </strong></p>
           <p className="text-white mt-4 md:mt-0 font-semibold">All rights reserved.</p>
         </div>
       </div>
