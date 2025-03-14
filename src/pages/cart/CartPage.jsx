@@ -76,8 +76,8 @@ const CartPage = () => {
         const orderInfo = {
             cartItems,
             addressInfo,
-            email: user.email,
-            userid: user.uid,
+            email: userrole?.email || "",  // Use the parsed object and provide default empty string
+            userid: userrole?.uid || "",  // Use the parsed object and provide default empty string
             status: "confirmed",
             time: Timestamp.now(),
             date: new Date().toLocaleString(
