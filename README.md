@@ -4,7 +4,7 @@ Welcome to the E-Commerce Web Application! This project is built using React, Ta
 
 ## Live Demo
 
-Explore the live demo of the application [here](https://abhishekprojects.online).
+Explore the live demo of the application [here](https://e-commerce-nine-rho-52.vercel.app/).
 
 ## Project Structure
 
