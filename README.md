@@ -6,7 +6,9 @@ Welcome to the E-Commerce Web Application! This project is built using React, Ta
 
 Explore the live demo of the application [here](https://abhishekprojects.online).
 
-![Project Structure](./public/project-structure.png)
+## Project Structure
+
+![Project Structure](./public/img/Ecommerce%20Project%20Structure.png)
 
 ## Table of Contents
 
