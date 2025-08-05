@@ -47,7 +47,11 @@ const Footer = () => {
         </div>
         {/* Bottom Section */}
         <div className="mt-8 border-t border-gray-700 pt-8 flex flex-col md:flex-row items-center justify-between">
+<<<<<<< HEAD
         <p className="text-white font-semibold">© 2025 E-Commerce</p>
+=======
+        <p className="text-white font-semibold">© 2024 E-Commerce</p>
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
         <p className="text-white mt-4 md:mt-0 font-semibold"><strong>Made by Abhishek </strong></p>
           <p className="text-white mt-4 md:mt-0 font-semibold">All rights reserved.</p>
         </div>

@@ -4,6 +4,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import {getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
+<<<<<<< HEAD
 // Suppress non-critical Firebase warnings and network errors
 const originalConsoleError = console.error;
 const originalConsoleWarn = console.warn;
@@ -53,6 +54,8 @@ if (typeof window !== 'undefined') {
     });
   };
 }
+=======
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -73,4 +76,8 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 const provider = new GoogleAuthProvider();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
 export { fireDB, auth, storage,provider, signInWithPopup };

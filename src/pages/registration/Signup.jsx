@@ -96,7 +96,11 @@ const Signup = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-pink-100">
       {loading && <Loader />} {/* Display Loader if loading is true */}
+<<<<<<< HEAD
       <div className="signup_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-lg max-w-md w-full m-2 relative">
+=======
+      <div className="signup_Form bg-white px-8 py-6 border border-pink-100 rounded-xl shadow-md max-w-md w-full m-2 relative">
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
         <Link to="/" className="absolute top-0 left-0 p-4">
           <svg
             className="w-6 h-6 text-pink-500"
@@ -114,12 +118,20 @@ const Signup = () => {
           </svg>
         </Link>
         <div className="mb-5">
+<<<<<<< HEAD
           <h2 className="text-center text-3xl font-bold text-pink-600">
+=======
+          <h2 className="text-center text-2xl font-bold text-pink-500">
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
             Signup
           </h2>
         </div>
         <form onSubmit={userSignupFunction}>
+<<<<<<< HEAD
           <div className="mb-4">
+=======
+          <div className="mb-3">
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
             <input
               type="text"
               placeholder="Full Name"
@@ -127,11 +139,19 @@ const Signup = () => {
               onChange={(e) =>
                 setUserSignup({ ...userSignup, name: e.target.value })
               }
+<<<<<<< HEAD
               className="border border-pink-200 px-3 py-2 w-full rounded-md outline-none placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
               required
             />
           </div>
           <div className="mb-4">
+=======
+              className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
+              required
+            />
+          </div>
+          <div className="mb-3">
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
             <input
               type="email"
               placeholder="Email Address"
@@ -139,11 +159,19 @@ const Signup = () => {
               onChange={(e) =>
                 setUserSignup({ ...userSignup, email: e.target.value })
               }
+<<<<<<< HEAD
               className="border border-pink-200 px-3 py-2 w-full rounded-md outline-none placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
               required
             />
           </div>
           <div className="mb-6">
+=======
+              className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
+              required
+            />
+          </div>
+          <div className="mb-5">
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
             <input
               type="password"
               placeholder="Password"
@@ -151,6 +179,7 @@ const Signup = () => {
               onChange={(e) =>
                 setUserSignup({ ...userSignup, password: e.target.value })
               }
+<<<<<<< HEAD
               className="border border-pink-200 px-3 py-2 w-full rounded-md outline-none placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500"
               required
             />
@@ -159,6 +188,16 @@ const Signup = () => {
             <button
               type="submit"
               className="bg-pink-600 hover:bg-pink-700 w-full text-white text-center py-2 font-bold rounded-md transition duration-300"
+=======
+              className="border border-pink-200 px-2 py-2 w-full rounded-md outline-none placeholder-gray-500"
+              required
+            />
+          </div>
+          <div className="mb-5">
+            <button
+              type="submit"
+              className="bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md"
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
             >
               Signup
             </button>
@@ -169,9 +208,15 @@ const Signup = () => {
           <Googleauthpage />
         </div>
         <div>
+<<<<<<< HEAD
           <h2 className="text-gray-600 text-center">
             Have an account?{" "}
             <Link className="text-pink-600 hover:text-pink-700 font-semibold" to="/login">
+=======
+          <h2 className="text-black text-center">
+            Have an account?{" "}
+            <Link className="text-pink-500 font-bold" to="/login">
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
               Login
             </Link>
           </h2>

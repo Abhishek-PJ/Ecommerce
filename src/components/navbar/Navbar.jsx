@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { useState, useEffect, useContext } from "react";
 import SearchBar from "../searchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +13,15 @@ const Navbar = () => {
   const context = useContext(myContext);
   const { currentUser, loadUserCart } = context;
   
+=======
+import { useState } from "react";
+import SearchBar from "../searchBar/SearchBar";
+import { useSelector, useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { clearCart } from "../../redux/cartSlice";
+
+const Navbar = () => {
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
   // Get user from localStorage
   const user = localStorage.getItem('users');
   let parsedUser = null;
@@ -30,6 +40,7 @@ const Navbar = () => {
   // Use dispatch hook
   const dispatch = useDispatch();
 
+<<<<<<< HEAD
   // CartItems
   const cartItems = useSelector((state) => state.cart);
 
@@ -54,10 +65,25 @@ const Navbar = () => {
     }
   };
 
+=======
+  // Logout function
+  const logout = () => {
+    navigate("/");
+    toast.success("Logout Success");
+    localStorage.removeItem('users');
+    dispatch(clearCart());
+    localStorage.removeItem('cart');
+  };
+
+  // CartItems
+  const cartItems = useSelector((state) => state.cart);
+
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
   // State for toggling the mobile menu
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+<<<<<<< HEAD
   // Toggle search bar visibility
   const toggleSearch = () => {
     setIsSearchVisible(!isSearchVisible);
@@ -66,14 +92,27 @@ const Navbar = () => {
   // NavList Data
   const navList = (
     <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8 text-white font-medium text-lg px-5 py-2 items-center">
+=======
+  // NavList Data
+  const navList = (
+    <ul className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-6 text-white font-medium text-lg px-5 py-2">
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
       {/* Home */}
       <li className="hover:text-gray-300 transition duration-300">
         <Link to={'/'} onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
       </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
       {/* All Product */}
       <li className="hover:text-gray-300 transition duration-300">
         <Link to={'/allproduct'} onClick={() => setIsMobileMenuOpen(false)}>All Product</Link>
       </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
       {/* Categories */}
       <li className="relative">
         <button 
@@ -92,6 +131,10 @@ const Navbar = () => {
           </ul>
         )}
       </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
       {/* Signup and Login */}
       {!parsedUser && (
         <>
@@ -103,6 +146,10 @@ const Navbar = () => {
           </li>
         </>
       )}
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
       {/* Logged-in User/Admin NavLinks */}
       {parsedUser && (
         <>
@@ -112,6 +159,10 @@ const Navbar = () => {
               <Link to={'/user-dashboard'} onClick={() => setIsMobileMenuOpen(false)}>User</Link>
             </li>
           )}
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
           {/* Admin Dashboard */}
           {parsedUser.role.toLowerCase() === "admin" && (
             <li className="hover:text-gray-300 transition duration-300">
@@ -125,6 +176,7 @@ const Navbar = () => {
           </li>
         </>
       )}
+<<<<<<< HEAD
       {/* Search Icon */}
       <li className="hover:text-gray-300 transition duration-300 cursor-pointer" onClick={toggleSearch}>
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -140,12 +192,20 @@ const Navbar = () => {
           <span className="bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center absolute -top-2 -right-2">
             {cartItems.length}
           </span>
+=======
+
+      {/* Cart */}
+      <li className="hover:text-gray-300 transition duration-300">
+        <Link to={'/cart'} onClick={() => setIsMobileMenuOpen(false)}>
+          Cart({cartItems.length})
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
         </Link>
       </li>
     </ul>
   );
 
   return (
+<<<<<<< HEAD
     <div className="bg-pink-600 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
@@ -167,10 +227,47 @@ const Navbar = () => {
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+=======
+    <nav className="bg-pink-600 shadow-lg sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-2 flex flex-col lg:flex-row lg:items-center justify-between">
+        {/* Logo and Menu Button */}
+        <div className="flex justify-between items-center w-full lg:w-auto">
+          <Link to={'/'}>
+            <span className="font-bold text-white text-2xl lg:text-3xl tracking-wide ml-1 lg:ml-0">E-Commerce</span>
+          </Link>
+          <div className="lg:hidden py-1 px-1">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                )}
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
               </svg>
             </button>
           </div>
         </div>
+<<<<<<< HEAD
         
         {/* Search Bar - Desktop */}
         {isSearchVisible && (
@@ -197,5 +294,25 @@ const Navbar = () => {
     </div>
   );
 };
+=======
+
+        {/* Search Bar (hidden on small screens) */}
+        <div className="hidden my-2 lg:block lg:max-w-xs lg:w-full">
+          <SearchBar />
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`lg:flex ${isMobileMenuOpen ? 'block' : 'hidden'} lg:block`}>
+        {navList}
+        {/* Search Bar (visible on small screens) */}
+        <div className="lg:hidden mt-4 lg:mt-0 px-4">
+          <SearchBar />
+        </div>
+      </div>
+    </nav>
+  );
+}
+>>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
 
 export default Navbar;
