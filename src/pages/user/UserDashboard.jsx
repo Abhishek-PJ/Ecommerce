@@ -3,10 +3,7 @@ import Layout from "../../components/layout/Layout";
 import MyContext from "../../context/myContext";
 import Loader from "../../components/loader/Loader";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import { PWACacheManager } from "../../components/pwa/PWAProvider";
-=======
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
 
 const UserDashboard = () => {
     const user = JSON.parse(localStorage.getItem('users'));
@@ -83,7 +80,6 @@ const UserDashboard = () => {
                         </div>
                     </div>
 
-<<<<<<< HEAD
                     <br />
                     <br />
 
@@ -92,8 +88,6 @@ const UserDashboard = () => {
                         <PWACacheManager />
                     </div> */}
 
-=======
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
                     {/* Order Details */}
                     <div>
                         <h2 className="text-2xl font-bold mb-4">Order Details</h2>

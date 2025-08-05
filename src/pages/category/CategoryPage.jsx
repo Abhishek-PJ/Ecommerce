@@ -19,7 +19,6 @@ const CategoryPage = () => {
     const cartItems = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
-<<<<<<< HEAD
     // add to cart function
     const addCart = (item) => {
         // Clean the item to remove non-serializable fields like Timestamp
@@ -33,10 +32,6 @@ const CategoryPage = () => {
             // Add any other fields you need, but exclude 'time' and other Firebase-specific fields
         };
         dispatch(addToCart(cleanItem));
-=======
-    const addCart = (item) => {
-        dispatch(addToCart(item));
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
         toast.success("Added to cart");
     }
 
@@ -45,13 +40,7 @@ const CategoryPage = () => {
         toast.success("Deleted from cart");
     }
 
-<<<<<<< HEAD
     // Cart persistence is now handled by the useCartPersistence hook
-=======
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems])
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
 
     return (
         <Layout>
@@ -69,16 +58,11 @@ const CategoryPage = () => {
                     :
                     <section className="text-gray-600 body-font">
                         <div className="container px-5 py-5 mx-auto">
-<<<<<<< HEAD
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
-=======
-                            <div className="flex flex-wrap -m-4 justify-center">
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
                                 {filterProduct.length > 0 ?
                                     filterProduct.map((item, index) => {
                                         const { id, title, price, productImageUrl } = item;
                                         return (
-<<<<<<< HEAD
                                             <div key={index} className="flex flex-col h-full">
                                                 <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-transform duration-300 ease-in-out cursor-pointer flex flex-col h-full">
                                                     <div className="relative overflow-hidden bg-gray-50 flex-shrink-0">
@@ -90,17 +74,6 @@ const CategoryPage = () => {
                                                         />
                                                     </div>
                                                     <div className="p-6 bg-white flex-grow flex flex-col">
-=======
-                                            <div key={index} className="p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-                                                <div className="h-full border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-transform duration-300 ease-in-out cursor-pointer">
-                                                    <img
-                                                        onClick={() => navigate(`/productinfo/${id}`)}
-                                                        className="lg:h-80 h-64 w-full object-cover rounded-t-2xl transition-transform duration-300 ease-in-out hover:scale-105"
-                                                        src={productImageUrl}
-                                                        alt={title}
-                                                    />
-                                                    <div className="p-6 bg-white">
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
                                                         <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                                             E-Commerce
                                                         </h2>
@@ -110,11 +83,7 @@ const CategoryPage = () => {
                                                         <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                                                             ₹{price}
                                                         </h1>
-<<<<<<< HEAD
                                                         <div className="flex justify-center mt-auto">
-=======
-                                                        <div className="flex justify-center">
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
                                                             {cartItems.some((p) => p.id === item.id) ? (
                                                                 <button
                                                                     onClick={() => deleteCart(item)}

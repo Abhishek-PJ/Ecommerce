@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react';
 import MyContext from './myContext';
-<<<<<<< HEAD
 import { collection, deleteDoc, doc, onSnapshot, orderBy, query, getDocs, where } from 'firebase/firestore';
 import { fireDB, auth } from '../firebase/FirebaseConfig';
 import toast from 'react-hot-toast';
 import { onAuthStateChanged } from 'firebase/auth';
 import { loadCartFromFirebase as loadCartFromFirebaseUtil } from '../utils/cartUtils';
-=======
-import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from 'firebase/firestore';
-import { fireDB, auth } from '../firebase/FirebaseConfig';
-import toast from 'react-hot-toast';
-import { onAuthStateChanged } from 'firebase/auth';
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
 
 function MyState({ children }) {
     const [loading, setLoading] = useState(false);
@@ -69,7 +62,6 @@ function MyState({ children }) {
         }
     };
 
-<<<<<<< HEAD
     // Function to load user's cart from Firebase
     const loadUserCart = async (userId) => {
         try {
@@ -103,8 +95,6 @@ function MyState({ children }) {
         return null;
     };
 
-=======
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
     useEffect(() => {
         const productUnsubscribe = getAllProductFunction();
         const orderUnsubscribe = getAllOrderFunction();
@@ -112,12 +102,7 @@ function MyState({ children }) {
 
         const authUnsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-<<<<<<< HEAD
                 setCurrentUser(user); // directly set from Firebase
-=======
-                const storedUser = JSON.parse(localStorage.getItem("users"));
-                setCurrentUser(storedUser);
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
             } else {
                 setCurrentUser(null);
             }
@@ -166,13 +151,9 @@ function MyState({ children }) {
             getAllUser,
             currentUser,
             setCurrentUser,
-<<<<<<< HEAD
             getAllProductFunction,
             loadUserCart,
             refreshUserData
-=======
-            getAllProductFunction // Ensure this is included in the context value
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
         }}>
             {children}
         </MyContext.Provider>

@@ -15,7 +15,6 @@ const HomePageProductCard = () => {
 
     // add to cart function
     const addCart = (item) => {
-<<<<<<< HEAD
         // Clean the item to remove non-serializable fields like Timestamp
         const cleanItem = {
             id: item.id,
@@ -27,9 +26,6 @@ const HomePageProductCard = () => {
             // Add any other fields you need, but exclude 'time' and other Firebase-specific fields
         };
         dispatch(addToCart(cleanItem));
-=======
-        dispatch(addToCart(item));
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
         toast.success("Added to cart");
     }
 
@@ -39,13 +35,7 @@ const HomePageProductCard = () => {
         toast.success("Deleted from cart");
     }
 
-<<<<<<< HEAD
     // Cart persistence is now handled by the useCartPersistence hook
-=======
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems]);
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
 
     return (
         <div className="mt-10">
@@ -61,7 +51,6 @@ const HomePageProductCard = () => {
                         {loading && <Loader />}
                     </div>
                     {/* Products Grid */}
-<<<<<<< HEAD
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {getAllProduct.slice(0, 8).map((item, index) => {
                             const { id, title, price, productImageUrl } = item;
@@ -77,21 +66,6 @@ const HomePageProductCard = () => {
                                             />
                                         </div>
                                         <div className="p-6 bg-white flex-grow flex flex-col">
-=======
-                    <div className="flex flex-wrap -m-4">
-                        {getAllProduct.slice(0, 8).map((item, index) => {
-                            const { id, title, price, productImageUrl } = item;
-                            return (
-                                <div key={index} className="p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
-                                    <div className="h-full border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-transform duration-300 ease-in-out cursor-pointer">
-                                        <img
-                                            onClick={() => navigate(`/productinfo/${id}`)}
-                                            className="lg:h-80 h-64 w-full object-cover rounded-t-2xl transition-transform duration-300 ease-in-out hover:scale-105"
-                                            src={productImageUrl}
-                                            alt={title}
-                                        />
-                                        <div className="p-6 bg-white">
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
                                             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                                 E-Commerce
                                             </h2>
@@ -101,11 +75,7 @@ const HomePageProductCard = () => {
                                             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                                                 ₹{price}
                                             </h1>
-<<<<<<< HEAD
                                             <div className="flex justify-center mt-auto">
-=======
-                                            <div className="flex justify-center">
->>>>>>> c3925beac52a72e00fc77ae11f3fc342880956d7
                                                 {cartItems.some((p) => p.id === item.id)
                                                     ? (
                                                         <button
