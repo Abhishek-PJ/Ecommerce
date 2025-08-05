@@ -19,7 +19,7 @@
     "@reduxjs/toolkit": "^2.1.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "antd": "^5.14.0",
-    "apexcharts": "^3.49.1",
+    "apexcharts": "^4.0.0",
     "bootstrap": "^5.3.3",
     "firebase": "^10.8.0",
     "lucide-react": "^0.323.0",
